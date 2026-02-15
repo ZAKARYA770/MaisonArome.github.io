@@ -3,86 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maison Arôme | Haute Parfumerie & Création Sur Mesure</title>
-    
-    <meta name="description" content="Découvrez Maison Arôme, l'art du parfum personnalisé. Créez votre signature olfactive unique avec nos essences rares.">
-    
+    <title>Maison Arôme | Accueil</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@200;300;400;600&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-    <div id="cart-modal">
-        <div class="cart-header">
-            <h3 class="serif">Mon Panier</h3>
-            <button onclick="toggleCart()" style="font-size: 1.5rem;">&times;</button>
-        </div>
-        <div class="cart-items" id="cart-list">
-            <p style="text-align: center; color: var(--mocha); margin-top: 2rem;">Votre panier est vide.</p>
-        </div>
-        <div class="cart-total">
-            <div style="display: flex; justify-content: space-between; font-weight: 600;">
-                <span>Total</span>
-                <span id="cart-total-price">0,00 €</span>
-            </div>
-            <button class="checkout-btn" onclick="simulateCheckout()">Procéder au paiement</button>
-        </div>
-    </div>
-
     <nav id="main-nav">
-        <div class="logo">Maison Arôme</div>
+        <div class="logo">
+            <a href="index.html">
+                <img src="images/logo.jpeg" alt="Maison Arôme" style="height: 60px; width: auto; object-fit: contain;">
+            </a>
+        </div>
         <div class="nav-links">
             <a href="index.html">Accueil</a>
             <a href="collection.html">Collection</a>
             <a href="personnalisation.html">Personnalisation</a>
             <a href="contact.html">Contact</a>
         </div>
-        <div class="nav-icons">
-            <div class="cart-icon-wrapper" onclick="toggleCart()">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4H6zM3 6h18M16 10a4 4 0 01-8 0" />
-                </svg>
+        <div class="nav-icons" onclick="toggleCart()">
+            <div class="cart-icon-wrapper">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4H6zM3 6h18M16 10a4 4 0 01-8 0" /></svg>
                 <span class="cart-count" id="cart-count">0</span>
             </div>
         </div>
     </nav>
 
     <section id="hero" class="hero" style="padding: 0;">
-        <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&q=80&w=1920" class="hero-video-bg" alt="Luxe Parfum">
+        <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&q=80&w=1920" class="hero-video-bg">
         <div class="hero-content">
-            <p>CRÉATEUR D'ÉMOTIONS OLFACTIVES</p>
             <h1>Votre Signature,<br>Dans un flacon d'exception.</h1>
             <a href="personnalisation.html" class="btn-gold">Débuter la création</a>
         </div>
     </section>
 
-    <footer id="contact">
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 4rem; margin-bottom: 4rem;">
-            <div>
-                <h4 class="serif" style="margin-bottom: 1.5rem;">Maison Arôme</h4>
-                <p style="font-size: 0.8rem; color: var(--mocha);">Inspiré par l'élégance française, enraciné dans le luxe de Casablanca.</p>
-            </div>
-            <div>
-                <h4 class="serif" style="margin-bottom: 1.5rem;">Navigation</h4>
-                <ul style="font-size: 0.8rem; line-height: 2;">
-                    <li><a href="#">Notre Histoire</a></li>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">Livraison & Retours</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="serif" style="margin-bottom: 1.5rem;">Newsletter</h4>
-                <div style="display: flex; gap: 10px;">
-                    <input type="email" placeholder="Votre email" style="background: none; border: none; border-bottom: 1px solid var(--mocha); padding: 5px; outline: none; flex: 1;">
-                    <button style="text-transform: uppercase; font-size: 0.7rem; letter-spacing: 0.1em;">S'abonner</button>
-                </div>
-            </div>
+    <div id="cart-modal">
+        <div class="cart-header"><h3>Mon Panier</h3><button onclick="toggleCart()">&times;</button></div>
+        <div id="cart-list"></div>
+        <div class="cart-total">
+            <div style="display: flex; justify-content: space-between;"><span>Total</span><span id="cart-total-price">0,00 €</span></div>
+            <button class="checkout-btn" onclick="simulateCheckout()">Payer</button>
         </div>
-        <div style="text-align: center; border-top: 1px solid var(--beige); padding-top: 2rem; font-size: 0.7rem; color: var(--mocha);">
-            © 2026 MAISON ARÔME | PARIS - CASABLANCA. TOUS DROITS RÉSERVÉS.
-        </div>
-    </footer>
+    </div>
 
     <script src="js/script.js"></script>
 </body>
