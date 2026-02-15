@@ -1,1 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collection | Maison Arôme</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@200;300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css"> </head>
+<body>
+    <nav id="main-nav">
+        <div class="logo">Maison Arôme</div>
+        <div class="nav-links">
+            <a href="index.html">Accueil</a>
+            <a href="collection.html">Collection</a>
+            <a href="personnalisation.html">Personnalisation</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <div class="nav-icons" onclick="toggleCart()">
+            <div class="cart-icon-wrapper">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4H6zM3 6h18M16 10a4 4 0 01-8 0" /></svg>
+                <span class="cart-count" id="cart-count">0</span>
+            </div>
+        </div>
+    </nav>
 
+    <section id="collection" style="margin-top: 5rem;">
+        <div class="section-title">
+            <span style="letter-spacing: 0.3em; font-size: 0.7rem; color: var(--gold);">BOUTIQUE</span>
+            <h2>Prêt-à-Porter</h2>
+        </div>
+        <div class="filter-tabs">
+            <button class="tab-btn active" onclick="filterProducts('all')">Tous</button>
+            <button class="tab-btn" onclick="filterProducts('p-porter')">Parfums</button>
+            <button class="tab-btn" onclick="filterProducts('coffret')">Coffrets</button>
+        </div>
+        <div class="grid" id="product-grid">
+            <div class="card p-porter" data-id="1" data-name="Lavande Douce" data-price="85">
+                <div class="card-img"><img src="https://images.unsplash.com/photo-1547637589-f54c34f5d7a4?auto=format&fit=crop&q=80&w=800"></div>
+                <div class="card-info">
+                    <h3 class="serif">Lavande Douce</h3>
+                    <p class="price">85,00 €</p>
+                    <button class="add-to-cart" onclick="addToCart(1, 'Lavande Douce', 85, '...')">Ajouter au panier</button>
+                </div>
+            </div>
+            </div>
+    </section>
+
+    <script src="js/script.js"></script> </body>
+</html>
