@@ -1,58 +1,129 @@
-// --- 1. Gestion du Panier avec LocalStorage ---
-let cart = JSON.parse(localStorage.getItem('maisonAromeCart')) || [];
+/**
+ * MAISON ARÔME - Personalization Logic (Senior Architecture)
+ */
 
-function saveCart() {
-    localStorage.setItem('maisonAromeCart', JSON.stringify(cart));
-    updateCartUI();
-}
+document.addEventListener('DOMContentLoaded', () => {
+    // --- State Management ---
+    let customization = {
+        bottle: "Classique",
+        color: "rgba(197, 160, 89, 0.3)",
+        engraving: "",
+        price: 120
+    };
 
-const cartModal = document.getElementById('cart-modal');
-const cartList = document.getElementById('cart-list');
-const cartCount = document.getElementById('cart-count');
-const cartTotalDisplay = document.getElementById('cart-total-price');
+    // --- DOM Elements ---
+    const elements = {
+        engravingInput: document.getElementById('engravingInput'),
+        previewText: document.getElementById('previewText'),
+        previewColor: document.getElementById('previewColor'),
+        charCount: document.getElementById('charCount'),
+        bottleOptions: document.querySelectorAll('#bottleSelect .option-btn'),
+        colorDots: document.querySelectorAll('#colorSelect .color-dot'),
+        displayPrice: document.getElementById('displayPrice'),
+        addToCartBtn: document.getElementById('addToCartBtn'),
+        cartCount: document.getElementById('cart-count')
+    };
 
-function toggleCart() {
-    cartModal.classList.toggle('open');
-}
+    // --- Logic Functions ---
 
-function addToCart(id, name, price, img) {
-    cart.push({ id, name, price, img });
-    saveCart();
-    if(!cartModal.classList.contains('open')) toggleCart();
-}
+    /**
+     * Updates the UI preview based on state
+     */
+    const updatePreview = () => {
+        if (elements.previewText) {
+            elements.previewText.innerText = customization.engraving || "VOTRE GRAVURE";
+        }
+        if (elements.previewColor) {
+            elements.previewColor.style.backgroundColor = customization.color;
+        }
+        if (elements.displayPrice) {
+            elements.displayPrice.innerText = `${customization.price},00 €`;
+        }
+        if (elements.charCount) {
+            elements.charCount.innerText = customization.engraving.length;
+        }
+    };
 
-function updateCartUI() {
-    if (cartCount) cartCount.innerText = cart.length;
-    if (!cartList) return;
+    // --- Event Listeners ---
 
-    if (cart.length === 0) {
-        cartList.innerHTML = '<p style="text-align: center; color: var(--mocha); margin-top: 2rem;">Votre panier est vide.</p>';
-        if (cartTotalDisplay) cartTotalDisplay.innerText = '0,00 €';
-        return;
+    // 1. Engraving Input
+    if (elements.engravingInput) {
+        elements.engravingInput.addEventListener('input', (e) => {
+            customization.engraving = e.target.value.toUpperCase();
+            updatePreview();
+        });
     }
 
-    cartList.innerHTML = cart.map((item, index) => `
-        <div class="cart-item">
-            <img src="${item.img}" alt="${item.name}">
-            <div style="flex:1">
-                <h4 class="serif" style="font-size: 0.9rem;">${item.name}</h4>
-                <p style="font-size: 0.8rem; color: var(--gold);">${item.price},00 €</p>
-            </div>
-            <button onclick="removeItem(${index})" style="color: red; font-size: 0.7rem; border:none; background:none; cursor:pointer;">Supprimer</button>
-        </div>
-    `).join('');
+    // 2. Bottle Selection
+    elements.bottleOptions.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // UI Toggle
+            elements.bottleOptions.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
 
-    const total = cart.reduce((sum, item) => sum + item.price, 0);
-    if (cartTotalDisplay) cartTotalDisplay.innerText = `${total},00 €`;
-}
+            // Update State
+            customization.bottle = btn.getAttribute('data-value');
+            customization.price = parseInt(btn.getAttribute('data-price'));
+            updatePreview();
+        });
+    });
 
-function removeItem(index) {
-    cart.splice(index, 1);
-    saveCart();
-}
+    // 3. Color Selection
+    elements.colorDots.forEach(dot => {
+        dot.addEventListener('click', () => {
+            elements.colorDots.forEach(d => d.classList.remove('active'));
+            dot.classList.add('active');
 
-// Khdem UI melli t-loadi l-page
-updateCartUI();
+            customization.color = dot.getAttribute('data-color');
+            updatePreview();
+        });
+    });
 
-// --- Bqiyat l-code (Creator & Filters) ---
-// ... (khli l-code dyal selectNote o filterProducts kima kano)
+    // 4. Add to Cart & LocalStorage
+    if (elements.addToCartBtn) {
+        elements.addToCartBtn.addEventListener('click', () => {
+            // Retrieve existing cart
+            let cart = JSON.parse(localStorage.getItem('maisonAromeCart')) || [];
+            
+            // Create unique item
+            const cartItem = {
+                id: Date.now(),
+                name: `Flacon Personnalisé - ${customization.bottle}`,
+                details: `Gravure: ${customization.engraving || 'Aucune'}`,
+                price: customization.price,
+                img: 'images/logo.jpeg' // Placeholder
+            };
+
+            cart.push(cartItem);
+            localStorage.setItem('maisonAromeCart', JSON.stringify(cart));
+
+            // Visual feedback
+            elements.addToCartBtn.innerText = "Ajouté !";
+            setTimeout(() => {
+                elements.addToCartBtn.innerText = "Ajouter à mon écrin";
+            }, 2000);
+
+            // Update badge if exists
+            if (elements.cartCount) {
+                elements.cartCount.innerText = cart.length;
+            }
+        });
+    }
+
+    // Initialize UI on load
+    updatePreview();
+});
+
+/**
+ * Navigation & Shared UI Logic
+ */
+const toggleCart = () => {
+    const modal = document.getElementById('cart-modal');
+    if (modal) modal.classList.toggle('open');
+};
+
+const cartBtn = document.getElementById('cartToggle');
+const closeBtn = document.getElementById('closeCart');
+
+if (cartBtn) cartBtn.addEventListener('click', toggleCart);
+if (closeBtn) closeBtn.addEventListener('click', toggleCart);
