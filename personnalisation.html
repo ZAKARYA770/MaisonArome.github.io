@@ -3,101 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atelier de Création | Maison Arôme</title>
-    
+    <title>Atelier | Maison Arôme</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@200;300;400;600&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
-    <div id="cart-modal">
-        <div class="cart-header">
-            <h3 class="serif">Mon Panier</h3>
-            <button onclick="toggleCart()" style="font-size: 1.5rem;">&times;</button>
+    <nav id="main-nav" class="scrolled">
+        <div class="logo">
+            <a href="index.html">
+                <img src="images/logo.jpeg" alt="Maison Arôme" style="height: 60px; width: auto; object-fit: contain;">
+            </a>
         </div>
-        <div class="cart-items" id="cart-list">
-            <p style="text-align: center; color: var(--mocha); margin-top: 2rem;">Votre panier est vide.</p>
-        </div>
-        <div class="cart-total">
-            <div style="display: flex; justify-content: space-between; font-weight: 600;">
-                <span>Total</span>
-                <span id="cart-total-price">0,00 €</span>
-            </div>
-            <button class="checkout-btn" onclick="simulateCheckout()">Procéder au paiement</button>
-        </div>
-    </div>
-
-    <nav id="main-nav" class="scrolled"> <div class="logo">Maison Arôme</div>
         <div class="nav-links">
             <a href="index.html">Accueil</a>
             <a href="collection.html">Collection</a>
             <a href="personnalisation.html">Personnalisation</a>
             <a href="contact.html">Contact</a>
         </div>
-        <div class="nav-icons">
-            <div class="cart-icon-wrapper" onclick="toggleCart()">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4H6zM3 6h18M16 10a4 4 0 01-8 0" />
-                </svg>
+        <div class="nav-icons" onclick="toggleCart()">
+            <div class="cart-icon-wrapper">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4H6zM3 6h18M16 10a4 4 0 01-8 0" /></svg>
                 <span class="cart-count" id="cart-count">0</span>
             </div>
         </div>
     </nav>
 
-    <section id="creation" style="background: var(--beige); min-height: 100vh; padding-top: 10rem;">
-        <div class="section-title">
-            <span style="letter-spacing: 0.3em; font-size: 0.7rem; color: var(--gold);">EXPÉRIENCE</span>
-            <h2>Atelier de Personnalisation</h2>
-            <p style="max-width: 600px; margin: 1rem auto; color: var(--mocha); font-size: 0.9rem;">
-                Composez votre signature olfactive en choisissant vos notes préférées.
-            </p>
-        </div>
-
+    <section id="creation" style="background: var(--beige); padding-top: 10rem; min-height: 100vh;">
         <div class="creator-container">
             <div class="creator-visual">
-                <div class="bottle-preview">
-                    <div class="liquid" id="liquid-fill" style="height: 20%;"></div>
-                </div>
-                <div style="position: absolute; bottom: 2rem; text-align: center;">
-                    <p id="perfume-summary" class="serif" style="font-style: italic;">Votre mélange unique...</p>
-                </div>
+                <div class="bottle-preview"><div class="liquid" id="liquid-fill" style="height: 20%;"></div></div>
+                <p id="perfume-summary" class="serif" style="margin-top:20px;">Votre mélange unique...</p>
             </div>
             <div class="creator-form">
                 <div class="note-group">
-                    <h4>Notes de Tête (Fraîcheur)</h4>
+                    <h4>Notes de Tête</h4>
                     <div class="note-options">
                         <button class="note-opt" onclick="selectNote('head', 'Bergamote')">Bergamote</button>
-                        <button class="note-opt" onclick="selectNote('head', 'Citron Noir')">Citron Noir</button>
-                        <button class="note-opt" onclick="selectNote('head', 'Néroli')">Néroli</button>
                     </div>
                 </div>
-                <div class="note-group">
-                    <h4>Notes de Cœur (Caractère)</h4>
-                    <div class="note-options">
-                        <button class="note-opt" onclick="selectNote('heart', 'Rose de Mai')">Rose de Mai</button>
-                        <button class="note-opt" onclick="selectNote('heart', 'Jasmin')">Jasmin Sabac</button>
-                        <button class="note-opt" onclick="selectNote('heart', 'Cannelle')">Cannelle</button>
-                    </div>
-                </div>
-                <div class="note-group">
-                    <h4>Notes de Fond (Sillage)</h4>
-                    <div class="note-options">
-                        <button class="note-opt" onclick="selectNote('base', 'Bois de Santal')">Santal</button>
-                        <button class="note-opt" onclick="selectNote('base', 'Vanille')">Vanille</button>
-                        <button class="note-opt" onclick="selectNote('base', 'Musc Blanc')">Musc Blanc</button>
-                    </div>
-                </div>
-                <button class="btn-gold" style="width: 100%;" onclick="addCustomToCart()">Ajouter ma création au panier (145 €)</button>
+                <button class="btn-gold" style="width: 100%;" onclick="addCustomToCart()">Ajouter au panier (145 €)</button>
             </div>
         </div>
     </section>
 
-    <footer>
-        <div style="text-align: center; border-top: 1px solid var(--beige); padding-top: 2rem; font-size: 0.7rem; color: var(--mocha);">
-            © 2026 MAISON ARÔME | PARIS - CASABLANCA. TOUS DROITS RÉSERVÉS.
+    <div id="cart-modal">
+        <div class="cart-header"><h3>Mon Panier</h3><button onclick="toggleCart()">&times;</button></div>
+        <div id="cart-list"></div>
+        <div class="cart-total">
+            <div style="display: flex; justify-content: space-between;"><span>Total</span><span id="cart-total-price">0,00 €</span></div>
+            <button class="checkout-btn" onclick="simulateCheckout()">Payer</button>
         </div>
-    </footer>
+    </div>
 
     <script src="js/script.js"></script>
 </body>
