@@ -5,9 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Collection | Maison Arôme</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@200;300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css"> </head>
+    <link rel="stylesheet" href="css/style.css">
+</head>
 <body>
-    <nav id="main-nav">
+
+    <div id="cart-modal">
+        <div class="cart-header">
+            <h3 class="serif">Mon Panier</h3>
+            <button onclick="toggleCart()" style="font-size: 1.5rem;">&times;</button>
+        </div>
+        <div class="cart-items" id="cart-list"></div>
+        <div class="cart-total">
+            <div style="display: flex; justify-content: space-between; font-weight: 600;">
+                <span>Total</span>
+                <span id="cart-total-price">0,00 €</span>
+            </div>
+            <button class="checkout-btn" onclick="simulateCheckout()">Procéder au paiement</button>
+        </div>
+    </div>
+
+    <nav id="main-nav" class="scrolled">
         <div class="logo">Maison Arôme</div>
         <div class="nav-links">
             <a href="index.html">Accueil</a>
@@ -15,35 +32,64 @@
             <a href="personnalisation.html">Personnalisation</a>
             <a href="contact.html">Contact</a>
         </div>
-        <div class="nav-icons" onclick="toggleCart()">
-            <div class="cart-icon-wrapper">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4H6zM3 6h18M16 10a4 4 0 01-8 0" /></svg>
+        <div class="nav-icons">
+            <div class="cart-icon-wrapper" onclick="toggleCart()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4H6zM3 6h18M16 10a4 4 0 01-8 0" />
+                </svg>
                 <span class="cart-count" id="cart-count">0</span>
             </div>
         </div>
     </nav>
 
-    <section id="collection" style="margin-top: 5rem;">
+    <section style="margin-top: 8rem;">
         <div class="section-title">
-            <span style="letter-spacing: 0.3em; font-size: 0.7rem; color: var(--gold);">BOUTIQUE</span>
-            <h2>Prêt-à-Porter</h2>
+            <span style="letter-spacing: 0.3em; font-size: 0.7rem; color: var(--gold);">NOS CRÉATIONS</span>
+            <h2>La Collection Aromatique</h2>
         </div>
+
         <div class="filter-tabs">
             <button class="tab-btn active" onclick="filterProducts('all')">Tous</button>
             <button class="tab-btn" onclick="filterProducts('p-porter')">Parfums</button>
-            <button class="tab-btn" onclick="filterProducts('coffret')">Coffrets</button>
+            <button class="tab-btn" onclick="filterProducts('coffret')">Coffrets & Crèmes</button>
         </div>
-        <div class="grid" id="product-grid">
-            <div class="card p-porter" data-id="1" data-name="Lavande Douce" data-price="85">
-                <div class="card-img"><img src="https://images.unsplash.com/photo-1547637589-f54c34f5d7a4?auto=format&fit=crop&q=80&w=800"></div>
+
+        <div class="grid">
+            <div class="card p-porter">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1547637589-f54c34f5d7a4?auto=format&fit=crop&q=80&w=800" alt="Lavande Douce">
+                </div>
                 <div class="card-info">
                     <h3 class="serif">Lavande Douce</h3>
                     <p class="price">85,00 €</p>
-                    <button class="add-to-cart" onclick="addToCart(1, 'Lavande Douce', 85, '...')">Ajouter au panier</button>
+                    <button class="add-to-cart" onclick="addToCart(1, 'Lavande Douce', 85, 'https://images.unsplash.com/photo-1547637589-f54c34f5d7a4?auto=format&fit=crop&q=80&w=100')">Ajouter au panier</button>
                 </div>
             </div>
+
+            <div class="card p-porter">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&q=80&w=800" alt="Épices Chaleureuses">
+                </div>
+                <div class="card-info">
+                    <h3 class="serif">Épices Chaleureuses</h3>
+                    <p class="price">95,00 €</p>
+                    <button class="add-to-cart" onclick="addToCart(2, 'Épices Chaleureuses', 95, 'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&q=80&w=100')">Ajouter au panier</button>
+                </div>
             </div>
+
+            <div class="card coffret">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1615037546132-d36569bb39d3?auto=format&fit=crop&q=80&w=800" alt="Pack Découverte">
+                </div>
+                <div class="card-info">
+                    <h3 class="serif">Pack Découverte</h3>
+                    <p class="price">120,00 €</p>
+                    <button class="add-to-cart" onclick="addToCart(3, 'Pack Découverte', 120, 'https://images.unsplash.com/photo-1615037546132-d36569bb39d3?auto=format&fit=crop&q=80&w=100')">Ajouter au panier</button>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <script src="js/script.js"></script> </body>
+    <script src="js/script.js"></script>
+</body>
 </html>
