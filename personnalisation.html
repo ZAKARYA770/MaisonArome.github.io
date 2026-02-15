@@ -1,60 +1,19 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atelier | Maison Arôme</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@200;300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <nav id="main-nav" class="scrolled">
-        <div class="logo">
-            <a href="index.html">
-                <img src="images/logo.jpeg" alt="Maison Arôme" style="height: 60px; width: auto; object-fit: contain;">
-            </a>
-        </div>
-        <div class="nav-links">
-            <a href="index.html">Accueil</a>
-            <a href="collection.html">Collection</a>
-            <a href="personnalisation.html">Personnalisation</a>
-            <a href="contact.html">Contact</a>
-        </div>
-        <div class="nav-icons" onclick="toggleCart()">
-            <div class="cart-icon-wrapper">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4H6zM3 6h18M16 10a4 4 0 01-8 0" /></svg>
-                <span class="cart-count" id="cart-count">0</span>
-            </div>
-        </div>
-    </nav>
+Act as a luxury product configurator expert.
 
-    <section id="creation" style="background: var(--beige); padding-top: 10rem; min-height: 100vh;">
-        <div class="creator-container">
-            <div class="creator-visual">
-                <div class="bottle-preview"><div class="liquid" id="liquid-fill" style="height: 20%;"></div></div>
-                <p id="perfume-summary" class="serif" style="margin-top:20px;">Votre mélange unique...</p>
-            </div>
-            <div class="creator-form">
-                <div class="note-group">
-                    <h4>Notes de Tête</h4>
-                    <div class="note-options">
-                        <button class="note-opt" onclick="selectNote('head', 'Bergamote')">Bergamote</button>
-                    </div>
-                </div>
-                <button class="btn-gold" style="width: 100%;" onclick="addCustomToCart()">Ajouter au panier (145 €)</button>
-            </div>
-        </div>
-    </section>
+Improve my personnalisation.html page.
 
-    <div id="cart-modal">
-        <div class="cart-header"><h3>Mon Panier</h3><button onclick="toggleCart()">&times;</button></div>
-        <div id="cart-list"></div>
-        <div class="cart-total">
-            <div style="display: flex; justify-content: space-between;"><span>Total</span><span id="cart-total-price">0,00 €</span></div>
-            <button class="checkout-btn" onclick="simulateCheckout()">Payer</button>
-        </div>
-    </div>
+I want:
 
-    <script src="js/script.js"></script>
-</body>
-</html>
+- Step-by-step customization UI
+- Bottle selection visual
+- Color preview live
+- Engraving input field
+- Real-time preview mockup
+- Elegant animations
+- Modern UI
+
+Make it feel premium and interactive.
+
+Keep structure clean and compatible with external CSS and JS files.
+
+Return full improved HTML.
