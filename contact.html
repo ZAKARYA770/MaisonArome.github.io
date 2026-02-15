@@ -1,9 +1,154 @@
-<section style="margin-top: 8rem; text-align: center;">
-    <h2 class="serif">Contactez-nous</h2>
-    <form style="max-width: 500px; margin: 2rem auto; display: flex; flex-direction: column; gap: 1rem;">
-        <input type="text" placeholder="Nom" style="padding: 1rem; border: 1px solid var(--beige);">
-        <input type="email" placeholder="Email" style="padding: 1rem; border: 1px solid var(--beige);">
-        <textarea placeholder="Message" style="padding: 1rem; border: 1px solid var(--beige); height: 150px;"></textarea>
-        <button class="btn-gold">Envoyer</button>
-    </form>
-</section>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contactez-nous | Maison Arôme - Haute Parfumerie</title>
+    
+    <meta name="description" content="Une question sur nos parfums personnalisés ou besoin d'une assistance ? Contactez la Maison Arôme. Notre atelier est à votre écoute.">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="contact-page">
+
+    <header>
+        <nav id="main-nav" class="scrolled">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo.jpeg" alt="Maison Arôme Logo" style="height: 55px; width: auto; object-fit: contain;">
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Accueil</a>
+                <a href="collection.html">Collection</a>
+                <a href="personnalisation.html">Personnalisation</a>
+                <a href="contact.html" class="active">Contact</a>
+            </div>
+            <div class="nav-icons">
+                <button class="cart-icon-wrapper" onclick="toggleCart()" aria-label="Mon Panier">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4H6zM3 6h18M16 10a4 4 0 01-8 0" />
+                    </svg>
+                    <span class="cart-count" id="cart-count">0</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main style="padding-top: 150px; min-height: 100vh;">
+        <div class="container" style="max-width: 1000px; margin: 0 auto; padding: 0 5%;">
+            
+            <section style="text-align: center; margin-bottom: 5rem;">
+                <span style="letter-spacing: 0.4em; font-size: 0.7rem; text-transform: uppercase; color: var(--gold);">Service Client</span>
+                <h1 class="serif" style="font-size: 3rem; margin-top: 15px; font-weight: 400;">Nous Contacter</h1>
+                <p style="color: var(--mocha); margin-top: 1rem; font-size: 0.9rem;">Une question, une demande spéciale ou besoin d'un conseil olfactif ?</p>
+            </section>
+
+            <div class="contact-wrapper" style="display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start;">
+                
+                <section class="contact-info">
+                    <div style="margin-bottom: 3rem;">
+                        <h3 class="serif" style="font-size: 1.5rem; margin-bottom: 1.5rem;">L'Atelier</h3>
+                        <p style="font-size: 0.9rem; line-height: 1.8; color: var(--mocha);">
+                            Maison Arôme<br>
+                            Secteur Prestige, Casablanca<br>
+                            Paris - Maroc
+                        </p>
+                    </div>
+
+                    <div style="margin-bottom: 3rem;">
+                        <h3 class="serif" style="font-size: 1.1rem; margin-bottom: 1rem;">Horaires d'écoute</h3>
+                        <p style="font-size: 0.8rem; color: var(--mocha);">Lundi - Vendredi : 09h00 – 18h00</p>
+                        <p style="font-size: 0.8rem; color: var(--mocha);">Samedi : Sur rendez-vous uniquement</p>
+                    </div>
+
+                    <div class="social-section">
+                        <h3 class="serif" style="font-size: 1.1rem; margin-bottom: 1rem;">Suivre notre processus</h3>
+                        <div style="display: flex; gap: 20px;">
+                            <a href="#" style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--gold); font-weight: 600;">Instagram</a>
+                            <a href="#" style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--gold); font-weight: 600;">TikTok</a>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="form-container">
+                    <form id="contact-form" style="display: flex; flex-direction: column; gap: 2rem;">
+                        <div class="input-group">
+                            <input type="text" id="name" name="name" placeholder="VOTRE NOM COMPLET" required 
+                                style="width: 100%; border: none; border-bottom: 1px solid #ddd; padding: 1rem 0; font-family: inherit; font-size: 0.8rem; outline: none; transition: border-color 0.3s ease;">
+                        </div>
+
+                        <div class="input-group">
+                            <input type="email" id="email" name="email" placeholder="VOTRE ADRESSE EMAIL" required 
+                                style="width: 100%; border: none; border-bottom: 1px solid #ddd; padding: 1rem 0; font-family: inherit; font-size: 0.8rem; outline: none; transition: border-color 0.3s ease;">
+                        </div>
+
+                        <div class="input-group">
+                            <select id="subject" name="subject" 
+                                style="width: 100%; border: none; border-bottom: 1px solid #ddd; padding: 1rem 0; font-family: inherit; font-size: 0.8rem; outline: none; background: transparent; color: #666; cursor: pointer;">
+                                <option value="">OBJET DE VOTRE DEMANDE</option>
+                                <option value="commande">Suivi de commande</option>
+                                <option value="personnalisation">Conseil personnalisation</option>
+                                <option value="presse">Partenariat & Presse</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <textarea id="message" name="message" rows="4" placeholder="VOTRE MESSAGE" required 
+                                style="width: 100%; border: none; border-bottom: 1px solid #ddd; padding: 1rem 0; font-family: inherit; font-size: 0.8rem; outline: none; resize: none; transition: border-color 0.3s ease;"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-gold" style="width: 100%; margin-top: 1rem; cursor: pointer;">Envoyer le message</button>
+                    </form>
+                    <div id="form-feedback" style="margin-top: 1.5rem; font-size: 0.8rem; text-align: center; display: none;"></div>
+                </section>
+
+            </div>
+        </div>
+    </main>
+
+    <footer style="padding: 4rem 5% 2rem; border-top: 1px solid #f5f5f5; text-align: center; margin-top: 5rem;">
+        <p style="font-size: 0.6rem; letter-spacing: 0.2em; color: var(--mocha); text-transform: uppercase;">© 2026 Maison Arôme | L'élégance à votre image</p>
+    </footer>
+
+    <aside id="cart-modal">
+        <div class="cart-header"><h3 class="serif">Mon Panier</h3><button onclick="toggleCart()">&times;</button></div>
+        <div class="cart-items" id="cart-list"></div>
+        <div class="cart-total">
+            <div style="display: flex; justify-content: space-between;"><span>Total</span><span id="cart-total-price">0,00 €</span></div>
+            <button class="checkout-btn" onclick="simulateCheckout()">Commander</button>
+        </div>
+    </aside>
+
+    <style>
+        input:focus, textarea:focus {
+            border-bottom-color: var(--gold) !important;
+        }
+        ::placeholder {
+            color: #bbb;
+            letter-spacing: 0.1em;
+            font-size: 0.7rem;
+        }
+        @media (max-width: 768px) {
+            .contact-wrapper {
+                grid-template-columns: 1fr !important;
+                gap: 3rem !important;
+            }
+            .serif { font-size: 2rem !important; }
+        }
+    </style>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Validation simple du formulaire
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const feedback = document.getElementById('form-feedback');
+            feedback.style.display = 'block';
+            feedback.style.color = '#c5a059';
+            feedback.innerText = "Merci. Votre message a été transmis à notre atelier. Nous vous répondrons sous 24h.";
+            this.reset();
+        });
+    </script>
+</body>
+</html>
