@@ -3,124 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atelier de Personnalisation | Maison Arôme</title>
-    
-    <meta name="description" content="Créez votre flacon de parfum unique. Sélectionnez votre écrin, votre teinte et gravez votre message personnel.">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
-    
+    <title>Atelier de Gravure | Maison Arôme</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="atelier-page">
+<body>
 
-    <header>
-        <nav id="main-nav" class="scrolled">
-            <div class="logo">
-                <a href="index.html">
-                    <img src="images/logo.jpeg" alt="Maison Arôme" id="navLogo">
-                </a>
+    <nav id="main-nav">
+        <div class="logo">
+            <a href="index.html"><img src="logo.png" alt="Maison Arôme" class="brand-logo"></a>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">ACCUEIL</a>
+            <a href="collection.html">COLLECTION</a>
+            <a href="personnalisation.html" class="active">PERSONNALISATION</a>
+            <a href="contact.html">CONTACT</a>
+        </div>
+        <div class="nav-icons" onclick="toggleCart()">
+            <div class="cart-icon-wrapper">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4H6zM3 6h18M16 10a4 4 0 01-8 0" /></svg>
+                <span class="cart-count" id="cart-count">0</span>
             </div>
-            <div class="nav-links">
-                <a href="index.html">Accueil</a>
-                <a href="collection.html">Collection</a>
-                <a href="personnalisation.html" class="active">Personnalisation</a>
-                <a href="contact.html">Contact</a>
-            </div>
-            <div class="nav-icons">
-                <button class="cart-icon-wrapper" id="cartToggle" aria-label="Voir le panier">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-                        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4H6zM3 6h18M16 10a4 4 0 01-8 0" />
-                    </svg>
-                    <span class="cart-count" id="cart-count">0</span>
-                </button>
-            </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
 
-    <main class="personalization-container">
-        <header class="atelier-header reveal active">
-            <span class="subtitle">L'Art de la Signature</span>
-            <h1 class="serif">L'Atelier de Gravure</h1>
-            <p class="description">Composez un objet d'exception à votre image ou pour offrir un souvenir éternel.</p>
+    <main class="atelier-container">
+        <header class="atelier-header">
+            <h1>L'Atelier de Gravure</h1>
+            <p>Composez un objet d'exception à votre image ou pour offrir un souvenir éternel.</p>
         </header>
 
-        <section class="atelier-grid">
-            <div class="preview-column">
-                <div class="preview-sticky">
-                    <div class="bottle-mockup" id="bottlePreview">
-                        <div class="liquid-overlay" id="previewColor"></div>
-                        <div class="engraving-preview-text" id="previewText">VOTRE GRAVURE</div>
-                    </div>
-                    <div class="preview-legend">
-                        <p class="serif">Aperçu en temps réel</p>
-                    </div>
+        <section class="atelier-content">
+            <div class="preview-section">
+                <div class="bottle-preview" id="bottlePreview">
+                    <div class="liquid" id="previewColor"></div>
+                    <div class="engraving-text" id="previewText">VOTRE GRAVURE</div>
                 </div>
+                <p class="preview-label">Aperçu en temps réel</p>
             </div>
 
-            <div class="controls-column">
-                
-                <div class="control-section reveal">
-                    <h3 class="step-title"><span>01</span> Choisir le flacon</h3>
-                    <div class="options-grid" id="bottleSelect">
-                        <button class="option-btn active" data-value="Classique" data-price="120">
-                            <span class="option-label">L'Iconique</span>
-                            <span class="option-desc">50ml - Rectangulaire</span>
-                        </button>
-                        <button class="option-btn" data-value="Cylindre" data-price="135">
-                            <span class="option-label">Le Cylindre</span>
-                            <span class="option-desc">50ml - Épuré</span>
-                        </button>
-                        <button class="option-btn" data-value="Prestige" data-price="180">
-                            <span class="option-label">Le Prestige</span>
-                            <span class="option-desc">100ml - Majestueux</span>
-                        </button>
+            <div class="options-section">
+                <div class="step">
+                    <h3>01 Choisir le flacon</h3>
+                    <div class="button-group" id="bottleSelect">
+                        <button class="opt-btn active" data-price="120">L'Iconique 50ml</button>
+                        <button class="opt-btn" data-price="135">Le Cylindre 50ml</button>
+                        <button class="opt-btn" data-price="180">Le Prestige 100ml</button>
                     </div>
                 </div>
 
-                <div class="control-section reveal">
-                    <h3 class="step-title"><span>02</span> Teinte de la fragrance</h3>
-                    <div class="color-palette" id="colorSelect">
-                        <button class="color-dot active" data-color="rgba(197, 160, 89, 0.3)" style="background: #C5A059;" aria-label="Or Ambré"></button>
-                        <button class="color-dot" data-color="rgba(219, 175, 160, 0.4)" style="background: #DBAFA0;" aria-label="Rose Poudré"></button>
-                        <button class="color-dot" data-color="rgba(153, 163, 142, 0.3)" style="background: #99A38E;" aria-label="Vert Sauge"></button>
+                <div class="step">
+                    <h3>02 Teinte de la fragrance</h3>
+                    <div class="color-group" id="colorSelect">
+                        <button class="color-dot active" data-color="#C5A059" style="background:#C5A059;"></button>
+                        <button class="color-dot" data-color="#DBAFA0" style="background:#DBAFA0;"></button>
+                        <button class="color-dot" data-color="#99A38E" style="background:#99A38E;"></button>
                     </div>
                 </div>
 
-                <div class="control-section reveal">
-                    <h3 class="step-title"><span>03</span> Gravure personnalisée</h3>
-                    <div class="input-wrapper">
-                        <input type="text" id="engravingInput" maxlength="20" placeholder="Saisissez votre message...">
-                        <small class="char-counter"><span id="charCount">0</span> / 20 caractères</small>
-                    </div>
-                    <p class="input-info">La gravure est réalisée au diamant dans nos ateliers à Paris.</p>
+                <div class="step">
+                    <h3>03 Gravure personnalisée</h3>
+                    <input type="text" id="engravingInput" maxlength="20" placeholder="Saisissez votre message...">
+                    <p class="char-limit"><span id="charCount">0</span> / 20 caractères</p>
+                    <p class="info-text">La gravure est réalisée au diamant dans nos ateliers à Paris.</p>
                 </div>
 
-                <div class="atelier-footer reveal">
-                    <div class="price-summary">
-                        <span class="total-label">Prix Total</span>
-                        <span class="total-amount" id="displayPrice">120,00 €</span>
-                    </div>
-                    <button class="btn-gold large" id="addToCartBtn">Ajouter à mon écrin</button>
-                    <a href="collection.html" class="btn-back">Retour à la collection</a>
+                <div class="atelier-footer">
+                    <p class="total-price">Prix Total <span id="displayPrice">120,00 €</span></p>
+                    <button class="btn-gold" id="addToCartBtn">Ajouter à mon écrin</button>
+                    <a href="collection.html" class="back-link">Retour à la collection</a>
                 </div>
-
             </div>
         </section>
     </main>
-
-    <aside id="cart-modal">
-        <div class="cart-header">
-            <h3 class="serif">Mon Panier</h3>
-            <button id="closeCart">&times;</button>
-        </div>
-        <div class="cart-items" id="cart-list"></div>
-        <div class="cart-total">
-            <div class="total-row">
-                <span>Total</span>
-                <span id="cart-total-price">0,00 €</span>
-            </div>
-            <button class="checkout-btn">Finaliser la commande</button>
-        </div>
-    </aside>
 
     <script src="js/script.js"></script>
 </body>
