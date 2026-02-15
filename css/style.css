@@ -1,101 +1,82 @@
-:root {
-    --gold: #c5a059;
-    --dark: #1a1a1a;
-    --beige: #f9f6f1;
-    --white: #ffffff;
-}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atelier de Gravure | Maison Arôme</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
 
-body {
-    margin: 0;
-    font-family: 'Montserrat', sans-serif;
-    background-color: var(--white);
-}
+    <nav id="main-nav">
+        <div class="logo">
+            <a href="index.html"><img src="logo.png" alt="Maison Arôme" class="brand-logo"></a>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">ACCUEIL</a>
+            <a href="collection.html">COLLECTION</a>
+            <a href="personnalisation.html" class="active">PERSONNALISATION</a>
+            <a href="contact.html">CONTACT</a>
+        </div>
+        <div class="nav-icons" onclick="toggleCart()">
+            <div class="cart-icon-wrapper">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4H6zM3 6h18M16 10a4 4 0 01-8 0" /></svg>
+                <span class="cart-count" id="cart-count">0</span>
+            </div>
+        </div>
+    </nav>
 
-/* Navbar Style */
-#main-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 5%;
-    background: var(--white);
-    position: fixed;
-    width: 90%;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-}
+    <main class="atelier-container">
+        <header class="atelier-header">
+            <h1>L'Atelier de Gravure</h1>
+            <p>Composez un objet d'exception à votre image ou pour offrir un souvenir éternel.</p>
+        </header>
 
-.brand-logo {
-    height: 80px; /* Qad l-kboriya d l-logo hna */
-    width: auto;
-    object-fit: contain;
-}
+        <section class="atelier-content">
+            <div class="preview-section">
+                <div class="bottle-preview" id="bottlePreview">
+                    <div class="liquid" id="previewColor"></div>
+                    <div class="engraving-text" id="previewText">VOTRE GRAVURE</div>
+                </div>
+                <p class="preview-label">Aperçu en temps réel</p>
+            </div>
 
-.nav-links {
-    display: flex;
-    gap: 25px;
-}
+            <div class="options-section">
+                <div class="step">
+                    <h3>01 Choisir le flacon</h3>
+                    <div class="button-group" id="bottleSelect">
+                        <button class="opt-btn active" data-price="120">L'Iconique 50ml</button>
+                        <button class="opt-btn" data-price="135">Le Cylindre 50ml</button>
+                        <button class="opt-btn" data-price="180">Le Prestige 100ml</button>
+                    </div>
+                </div>
 
-.nav-links a {
-    text-decoration: none;
-    color: var(--dark);
-    font-size: 0.7rem;
-    letter-spacing: 0.2em;
-    font-weight: 600;
-    transition: color 0.3s;
-}
+                <div class="step">
+                    <h3>02 Teinte de la fragrance</h3>
+                    <div class="color-group" id="colorSelect">
+                        <button class="color-dot active" data-color="#C5A059" style="background:#C5A059;"></button>
+                        <button class="color-dot" data-color="#DBAFA0" style="background:#DBAFA0;"></button>
+                        <button class="color-dot" data-color="#99A38E" style="background:#99A38E;"></button>
+                    </div>
+                </div>
 
-.nav-links a:hover {
-    color: var(--gold);
-}
+                <div class="step">
+                    <h3>03 Gravure personnalisée</h3>
+                    <input type="text" id="engravingInput" maxlength="20" placeholder="Saisissez votre message...">
+                    <p class="char-limit"><span id="charCount">0</span> / 20 caractères</p>
+                    <p class="info-text">La gravure est réalisée au diamant dans nos ateliers à Paris.</p>
+                </div>
 
-/* Hero Section */
-.hero {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: white;
-    position: relative;
-    overflow: hidden;
-}
+                <div class="atelier-footer">
+                    <p class="total-price">Prix Total <span id="displayPrice">120,00 €</span></p>
+                    <button class="btn-gold" id="addToCartBtn">Ajouter à mon écrin</button>
+                    <a href="collection.html" class="back-link">Retour à la collection</a>
+                </div>
+            </div>
+        </section>
+    </main>
 
-.hero-video-bg {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1;
-    filter: brightness(0.7);
-}
-
-.btn-gold {
-    display: inline-block;
-    padding: 15px 40px;
-    background: var(--gold);
-    color: white;
-    text-decoration: none;
-    letter-spacing: 0.2em;
-    font-size: 0.8rem;
-    margin-top: 20px;
-    transition: background 0.3s;
-}
-
-/* Cart Modal */
-#cart-modal {
-    position: fixed;
-    right: -400px;
-    top: 0;
-    width: 350px;
-    height: 100%;
-    background: white;
-    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
-    transition: 0.4s;
-    z-index: 2000;
-    padding: 20px;
-}
-
-#cart-modal.open {
-    right: 0;
-}
+    <script src="js/script.js"></script>
+</body>
+</html>
