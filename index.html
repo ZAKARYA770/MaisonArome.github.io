@@ -3,116 +3,459 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maison Arôme | Luxe Parfumerie</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@200;300;500&display=swap" rel="stylesheet">
+    <title>Maison Arôme | Haute Parfumerie & Création Sur Mesure</title>
+    
+    <meta name="description" content="Découvrez Maison Arôme, l'art du parfum personnalisé. Créez votre signature olfactive unique avec nos essences rares.">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@200;300;400;600&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --ivory: #F8F4EE;
             --beige: #EFE6DB;
             --mocha: #9C7F6A;
             --gold: #C6A75E;
-            --dark: #3E362E;
+            --gold-dark: #A3894A;
+            --dark: #2D2620;
+            --white: #ffffff;
+            --transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
         }
 
+        /* Base Styles */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Montserrat', sans-serif; background-color: var(--ivory); color: var(--dark); line-height: 1.6; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Montserrat', sans-serif; background-color: var(--ivory); color: var(--dark); overflow-x: hidden; }
         h1, h2, h3, .serif { font-family: 'Playfair Display', serif; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        ul { list-style: none; }
+        button { cursor: pointer; border: none; background: none; font-family: inherit; }
 
-        /* Navigation */
-        nav { position: fixed; width: 100%; padding: 1.5rem 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(248, 244, 238, 0.9); backdrop-filter: blur(10px); z-index: 1000; border-bottom: 1px solid rgba(198, 167, 94, 0.1); }
-        .logo { font-size: 1.4rem; letter-spacing: 0.3em; text-transform: uppercase; font-weight: 500; color: var(--dark); }
-
-        /* Hero Section */
-        .hero { height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; text-align: center; background: var(--beige); overflow: hidden; }
-        .hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.3; }
-        .hero-content { position: relative; z-index: 10; padding: 0 20px; }
-        .hero h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); font-style: italic; margin-bottom: 1rem; color: var(--dark); }
-        .tagline { font-size: 1.1rem; letter-spacing: 0.1em; color: var(--mocha); margin-bottom: 2.5rem; }
-
-        /* Buttons */
-        .btn { padding: 1.2rem 3rem; background: linear-gradient(135deg, var(--gold), #d4bc82); color: white; text-decoration: none; border-radius: 50px; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.2em; transition: 0.4s; display: inline-block; box-shadow: 0 10px 20px rgba(198, 167, 94, 0.2); border: none; }
-        .btn:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(198, 167, 94, 0.4); }
-
-        /* Product Grid */
-        section { padding: 6rem 8%; }
-        .section-title { text-align: center; margin-bottom: 4rem; }
-        .section-title h2 { font-size: 2.8rem; font-style: italic; margin-bottom: 10px; }
+        /* Navbar Animée */
+        nav {
+            position: fixed; width: 100%; padding: 1.5rem 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000; transition: var(--transition);
+        }
+        nav.scrolled {
+            padding: 1rem 5%;
+            background: rgba(248, 244, 238, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+        .logo { font-size: 1.6rem; letter-spacing: 0.3em; text-transform: uppercase; font-weight: 500; }
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; font-weight: 500; }
+        .nav-links a:hover { color: var(--gold); }
         
+        .nav-icons { display: flex; gap: 1.5rem; align-items: center; }
+        .cart-icon-wrapper { position: relative; }
+        .cart-count {
+            position: absolute; top: -8px; right: -10px;
+            background: var(--gold); color: white;
+            font-size: 0.6rem; width: 18px; height: 18px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+        }
+
+        /* Hero Luxe */
+        .hero {
+            height: 100vh; display: flex; align-items: center; justify-content: center;
+            position: relative; overflow: hidden; background: #000;
+        }
+        .hero-video-bg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover; opacity: 0.6; filter: sepia(20%);
+        }
+        .hero-content {
+            position: relative; z-index: 2; text-align: center; color: var(--white);
+            max-width: 800px; padding: 0 20px;
+        }
+        .hero h1 { font-size: clamp(2.5rem, 6vw, 5rem); font-style: italic; margin-bottom: 1.5rem; line-height: 1.1; }
+        .hero p { font-size: 1.1rem; letter-spacing: 0.1em; margin-bottom: 2.5rem; font-weight: 200; }
+
+        .btn-gold {
+            padding: 1.2rem 3rem; background: var(--gold); color: white;
+            border-radius: 50px; text-transform: uppercase; font-size: 0.75rem;
+            letter-spacing: 0.2em; display: inline-block; transition: var(--transition);
+        }
+        .btn-gold:hover { background: var(--gold-dark); transform: translateY(-3px); box-shadow: 0 10px 25px rgba(198, 167, 94, 0.4); }
+
+        /* Section E-commerce & Filtres */
+        section { padding: 8rem 10%; }
+        .filter-tabs {
+            display: flex; justify-content: center; gap: 2rem; margin-bottom: 4rem;
+        }
+        .tab-btn {
+            font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em;
+            padding-bottom: 8px; border-bottom: 1px solid transparent; color: var(--mocha);
+        }
+        .tab-btn.active { color: var(--gold); border-bottom: 1px solid var(--gold); }
+
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; }
-        .card { background: white; border-radius: 20px; overflow: hidden; border: 1px solid var(--beige); transition: 0.5s; text-align: center; padding-bottom: 2rem; }
-        .card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(0,0,0,0.05); }
-        .card img { width: 100%; height: 400px; object-fit: cover; }
-        .card h3 { margin: 1.5rem 0 0.5rem; font-size: 1.6rem; font-style: italic; }
-        .price { color: var(--gold); font-weight: 600; font-size: 1.1rem; }
+        .card { 
+            background: var(--white); border-radius: 15px; overflow: hidden; 
+            transition: var(--transition); border: 1px solid var(--beige); position: relative;
+        }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+        .card-img { height: 400px; overflow: hidden; position: relative; }
+        .card-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s; }
+        .card:hover img { transform: scale(1.1); }
+        .card-info { padding: 1.5rem; text-align: center; }
+        .card h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .card .price { color: var(--gold); font-weight: 600; font-size: 1.2rem; margin-bottom: 1rem; }
+        .add-to-cart {
+            width: 100%; padding: 1rem; background: var(--dark); color: white;
+            text-transform: uppercase; font-size: 0.7rem; letter-spacing: 0.1em;
+        }
 
-        /* Story/Atmosphere Section */
-        .story { background: var(--beige); display: flex; align-items: center; flex-wrap: wrap; gap: 4rem; }
-        .story-text { flex: 1; min-width: 300px; }
-        .story-img { flex: 1; min-width: 300px; height: 500px; object-fit: cover; border-radius: 30px; }
+        /* Panier Modal */
+        #cart-modal {
+            position: fixed; right: -400px; top: 0; width: 400px; height: 100%;
+            background: var(--white); z-index: 2000; transition: var(--transition);
+            box-shadow: -10px 0 30px rgba(0,0,0,0.1); padding: 2rem;
+            display: flex; flex-direction: column;
+        }
+        #cart-modal.open { right: 0; }
+        .cart-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--beige); padding-bottom: 1rem; margin-bottom: 1.5rem; }
+        .cart-items { flex: 1; overflow-y: auto; }
+        .cart-item { display: flex; gap: 1rem; margin-bottom: 1.5rem; align-items: center; }
+        .cart-item img { width: 70px; height: 70px; object-fit: cover; border-radius: 8px; }
+        .cart-total { border-top: 1px solid var(--beige); padding-top: 1rem; }
+        .checkout-btn { width: 100%; padding: 1rem; background: var(--gold); color: white; margin-top: 1rem; border-radius: 5px; }
 
-        footer { background: var(--ivory); padding: 4rem 5%; text-align: center; border-top: 1px solid var(--beige); }
-        .footer-logo { font-size: 1.2rem; letter-spacing: 0.2em; margin-bottom: 1rem; }
+        /* Custom Creator UI */
+        .creator-container {
+            background: var(--white); border-radius: 30px; display: grid;
+            grid-template-columns: 1fr 1fr; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.05);
+        }
+        .creator-visual { 
+            background: var(--beige); display: flex; align-items: center; justify-content: center; padding: 4rem; 
+            position: relative;
+        }
+        .bottle-preview { width: 250px; height: 350px; border: 2px solid var(--gold); border-radius: 10px 10px 50px 50px; position: relative; }
+        .liquid { 
+            position: absolute; bottom: 0; width: 100%; background: rgba(198, 167, 94, 0.3); 
+            border-radius: 0 0 45px 45px; transition: 0.5s; 
+        }
+        .creator-form { padding: 4rem; }
+        .note-group { margin-bottom: 2rem; }
+        .note-group h4 { margin-bottom: 1rem; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.1em; color: var(--mocha); }
+        .note-options { display: flex; gap: 10px; flex-wrap: wrap; }
+        .note-opt { 
+            padding: 8px 15px; border: 1px solid var(--beige); border-radius: 20px; 
+            font-size: 0.8rem; transition: 0.3s; 
+        }
+        .note-opt.selected { background: var(--gold); color: white; border-color: var(--gold); }
+
+        /* Animations Reveal */
+        .reveal { opacity: 0; transform: translateY(50px); transition: 1s all ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* Footer Mobile */
+        @media (max-width: 768px) {
+            .creator-container { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            #cart-modal { width: 100%; right: -100%; }
+        }
     </style>
 </head>
 <body>
 
-    <nav>
+    <div id="cart-modal">
+        <div class="cart-header">
+            <h3 class="serif">Mon Panier</h3>
+            <button onclick="toggleCart()" style="font-size: 1.5rem;">&times;</button>
+        </div>
+        <div class="cart-items" id="cart-list">
+            <p style="text-align: center; color: var(--mocha); margin-top: 2rem;">Votre panier est vide.</p>
+        </div>
+        <div class="cart-total">
+            <div style="display: flex; justify-content: space-between; font-weight: 600;">
+                <span>Total</span>
+                <span id="cart-total-price">0,00 €</span>
+            </div>
+            <button class="checkout-btn" onclick="simulateCheckout()">Procéder au paiement</button>
+        </div>
+    </div>
+
+    <nav id="main-nav">
         <div class="logo">Maison Arôme</div>
-        <div style="font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mocha);">Paris • Casablanca</div>
+        <div class="nav-links">
+            <a href="#hero">Accueil</a>
+            <a href="#collection">Collection</a>
+            <a href="#creation">Personnalisation</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <div class="nav-icons">
+            <div class="cart-icon-wrapper" onclick="toggleCart()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4H6zM3 6h18M16 10a4 4 0 01-8 0" />
+                </svg>
+                <span class="cart-count" id="cart-count">0</span>
+            </div>
+        </div>
     </nav>
 
-    <section class="hero">
-        <img src="https://images.unsplash.com/photo-1557170334-a9632e77c6e4?auto=format&fit=crop&q=80&w=1500" class="hero-bg" alt="Luxe">
+    <section id="hero" class="hero" style="padding: 0;">
+        <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&q=80&w=1920" class="hero-video-bg" alt="Luxe Parfum">
         <div class="hero-content">
-            <p style="text-transform: uppercase; letter-spacing: 0.4em; font-size: 0.7rem; margin-bottom: 1rem;">Haute Parfumerie Personnalisée</p>
-            <h1>Maison Arôme — <br>Le parfum qui vous ressemble.</h1>
-            <p class="tagline">Créez votre signature olfactive unique.</p>
-            <a href="#creation" class="btn">Créer mon parfum</a>
+            <p>CRÉATEUR D'ÉMOTIONS OLFACTIVES</p>
+            <h1>Votre Signature,<br>Dans un flacon d'exception.</h1>
+            <a href="#creation" class="btn-gold">Débuter la création</a>
         </div>
     </section>
 
-    <section id="collection">
+    <section id="collection" class="reveal">
         <div class="section-title">
-            <h2>Collection Aromatique</h2>
-            <p style="color: var(--mocha);">Des essences rares pour des moments inoubliables.</p>
+            <span style="letter-spacing: 0.3em; font-size: 0.7rem; color: var(--gold);">BOUTIQUE</span>
+            <h2>Prêt-à-Porter</h2>
         </div>
-        
+
+        <div class="filter-tabs">
+            <button class="tab-btn active" onclick="filterProducts('all')">Tous</button>
+            <button class="tab-btn" onclick="filterProducts('p-porter')">Parfums</button>
+            <button class="tab-btn" onclick="filterProducts('coffret')">Coffrets</button>
+        </div>
+
+        <div class="grid" id="product-grid">
+            <div class="card p-porter" data-id="1" data-name="Lavande Douce" data-price="85">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1547637589-f54c34f5d7a4?auto=format&fit=crop&q=80&w=800" alt="Lavande">
+                </div>
+                <div class="card-info">
+                    <h3 class="serif">Lavande Douce</h3>
+                    <p class="price">85,00 €</p>
+                    <button class="add-to-cart" onclick="addToCart(1, 'Lavande Douce', 85, 'https://images.unsplash.com/photo-1547637589-f54c34f5d7a4?auto=format&fit=crop&q=80&w=100')">Ajouter au panier</button>
+                </div>
+            </div>
+            <div class="card p-porter" data-id="2" data-name="Épices Chaleureuses" data-price="95">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&q=80&w=800" alt="Epicé">
+                </div>
+                <div class="card-info">
+                    <h3 class="serif">Épices Chaleureuses</h3>
+                    <p class="price">95,00 €</p>
+                    <button class="add-to-cart" onclick="addToCart(2, 'Épices Chaleureuses', 95, 'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&q=80&w=100')">Ajouter au panier</button>
+                </div>
+            </div>
+            <div class="card coffret" data-id="3" data-name="Coffret Découverte" data-price="120">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1615037546132-d36569bb39d3?auto=format&fit=crop&q=80&w=800" alt="Coffret">
+                </div>
+                <div class="card-info">
+                    <h3 class="serif">Coffret Découverte</h3>
+                    <p class="price">120,00 €</p>
+                    <button class="add-to-cart" onclick="addToCart(3, 'Coffret Découverte', 120, 'https://images.unsplash.com/photo-1615037546132-d36569bb39d3?auto=format&fit=crop&q=80&w=100')">Ajouter au panier</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="creation" style="background: var(--beige);" class="reveal">
+        <div class="section-title">
+            <span style="letter-spacing: 0.3em; font-size: 0.7rem; color: var(--gold);">EXPÉRIENCE</span>
+            <h2>Atelier de Personnalisation</h2>
+        </div>
+
+        <div class="creator-container">
+            <div class="creator-visual">
+                <div class="bottle-preview">
+                    <div class="liquid" id="liquid-fill" style="height: 20%;"></div>
+                </div>
+                <div style="position: absolute; bottom: 2rem; text-align: center;">
+                    <p id="perfume-summary" class="serif" style="font-style: italic;">Votre mélange unique...</p>
+                </div>
+            </div>
+            <div class="creator-form">
+                <div class="note-group">
+                    <h4>Notes de Tête (Fraîcheur)</h4>
+                    <div class="note-options">
+                        <button class="note-opt" onclick="selectNote('head', 'Bergamote')">Bergamote</button>
+                        <button class="note-opt" onclick="selectNote('head', 'Citron Noir')">Citron Noir</button>
+                        <button class="note-opt" onclick="selectNote('head', 'Néroli')">Néroli</button>
+                    </div>
+                </div>
+                <div class="note-group">
+                    <h4>Notes de Cœur (Caractère)</h4>
+                    <div class="note-options">
+                        <button class="note-opt" onclick="selectNote('heart', 'Rose de Mai')">Rose de Mai</button>
+                        <button class="note-opt" onclick="selectNote('heart', 'Jasmin')">Jasmin Sabac</button>
+                        <button class="note-opt" onclick="selectNote('heart', 'Cannelle')">Cannelle</button>
+                    </div>
+                </div>
+                <div class="note-group">
+                    <h4>Notes de Fond (Sillage)</h4>
+                    <div class="note-options">
+                        <button class="note-opt" onclick="selectNote('base', 'Bois de Santal')">Santal</button>
+                        <button class="note-opt" onclick="selectNote('base', 'Vanille')">Vanille</button>
+                        <button class="note-opt" onclick="selectNote('base', 'Musc Blanc')">Musc Blanc</button>
+                    </div>
+                </div>
+                <button class="btn-gold" style="width: 100%;" onclick="addCustomToCart()">Ajouter ma création au panier (145 €)</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="reveal">
+        <div class="section-title">
+            <h2>L'Expérience Partagée</h2>
+        </div>
         <div class="grid">
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1547637589-f54c34f5d7a4?auto=format&fit=crop&q=80&w=800" alt="Lavande">
-                <h3>Lavande Douce</h3>
-                <p style="margin-bottom: 0.5rem; font-weight: 200;">Sérénité et Pureté</p>
-                <p class="price">85,00 €</p>
+            <div style="text-align: center; padding: 2rem; background: white; border-radius: 15px;">
+                <p style="font-style: italic; margin-bottom: 1rem;">"Une signature olfactive que je ne retrouve nulle part ailleurs. Le processus de création est magique."</p>
+                <p class="serif"><strong>— Sophie R.</strong></p>
             </div>
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&q=80&w=800" alt="Epicé">
-                <h3>Épices Chaleureuses</h3>
-                <p style="margin-bottom: 0.5rem; font-weight: 200;">Intensité et Mystère</p>
-                <p class="price">95,00 €</p>
-            </div>
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1615037546132-d36569bb39d3?auto=format&fit=crop&q=80&w=800" alt="Pack">
-                <h3>Pack Découverte</h3>
-                <p style="margin-bottom: 0.5rem; font-weight: 200;">Miniatures & Crèmes</p>
-                <p class="price">45,00 €</p>
+            <div style="text-align: center; padding: 2rem; background: white; border-radius: 15px;">
+                <p style="font-style: italic; margin-bottom: 1rem;">"Le coffret cadeau a fait sensation. On sent la qualité des ingrédients dès la première note."</p>
+                <p class="serif"><strong>— Marc A.</strong></p>
             </div>
         </div>
     </section>
 
-    <section class="story">
-        <div class="story-text">
-            <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem;">Votre histoire dans un flacon.</h2>
-            <p style="margin-bottom: 2rem; color: #666;">Maison Arôme ne se limite pas à un parfum : nous proposons une expérience complète incluant parfum, miniatures et crèmes, pour prolonger le plaisir au quotidien.</p>
-            <a href="#" style="color: var(--gold); text-decoration: none; border-bottom: 1px solid var(--gold); padding-bottom: 5px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.2em;">Découvrir l'atelier</a>
+    <footer id="contact">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 4rem; margin-bottom: 4rem;">
+            <div>
+                <h4 class="serif" style="margin-bottom: 1.5rem;">Maison Arôme</h4>
+                <p style="font-size: 0.8rem; color: var(--mocha);">Inspiré par l'élégance française, enraciné dans le luxe de Casablanca.</p>
+            </div>
+            <div>
+                <h4 class="serif" style="margin-bottom: 1.5rem;">Navigation</h4>
+                <ul style="font-size: 0.8rem; line-height: 2;">
+                    <li><a href="#">Notre Histoire</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Livraison & Retours</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="serif" style="margin-bottom: 1.5rem;">Newsletter</h4>
+                <div style="display: flex; gap: 10px;">
+                    <input type="email" placeholder="Votre email" style="background: none; border: none; border-bottom: 1px solid var(--mocha); padding: 5px; outline: none; flex: 1;">
+                    <button style="text-transform: uppercase; font-size: 0.7rem; letter-spacing: 0.1em;">S'abonner</button>
+                </div>
+            </div>
         </div>
-        <img src="https://images.unsplash.com/photo-1616984748472-36988884936d?auto=format&fit=crop&q=80&w=1000" class="story-img" alt="Atelier">
-    </section>
-
-    <footer>
-        <div class="footer-logo serif">Maison Arôme</div>
-        <p style="font-size: 0.8rem; color: var(--mocha); max-width: 400px; margin: 0 auto 2rem;">"Un parfum personnalisé raconte votre histoire. Il crée une connexion émotionnelle unique."</p>
-        <div style="font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;">© 2026 Maison Arôme | Paris - Casablanca</div>
+        <div style="text-align: center; border-top: 1px solid var(--beige); padding-top: 2rem; font-size: 0.7rem; color: var(--mocha);">
+            © 2026 MAISON ARÔME | PARIS - CASABLANCA. TOUS DROITS RÉSERVÉS.
+        </div>
     </footer>
 
+    <script>
+        // --- 1. Gestion du Panier (JavaScript Logic) ---
+        let cart = [];
+        const cartModal = document.getElementById('cart-modal');
+        const cartList = document.getElementById('cart-list');
+        const cartCount = document.getElementById('cart-count');
+        const cartTotalDisplay = document.getElementById('cart-total-price');
+
+        function toggleCart() {
+            cartModal.classList.toggle('open');
+        }
+
+        function addToCart(id, name, price, img) {
+            cart.push({ id, name, price, img });
+            updateCartUI();
+            if(!cartModal.classList.contains('open')) toggleCart();
+        }
+
+        function updateCartUI() {
+            cartCount.innerText = cart.length;
+            if (cart.length === 0) {
+                cartList.innerHTML = '<p style="text-align: center; color: var(--mocha); margin-top: 2rem;">Votre panier est vide.</p>';
+                cartTotalDisplay.innerText = '0,00 €';
+                return;
+            }
+
+            cartList.innerHTML = cart.map((item, index) => `
+                <div class="cart-item">
+                    <img src="${item.img}" alt="${item.name}">
+                    <div style="flex:1">
+                        <h4 class="serif" style="font-size: 0.9rem;">${item.name}</h4>
+                        <p style="font-size: 0.8rem; color: var(--gold);">${item.price},00 €</p>
+                    </div>
+                    <button onclick="removeItem(${index})" style="color: red; font-size: 0.7rem;">Supprimer</button>
+                </div>
+            `).join('');
+
+            const total = cart.reduce((sum, item) => sum + item.price, 0);
+            cartTotalDisplay.innerText = `${total},00 €`;
+        }
+
+        function removeItem(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function simulateCheckout() {
+            if(cart.length === 0) return alert("Votre panier est vide");
+            alert("Redirection vers la passerelle de paiement sécurisée...");
+            cart = [];
+            updateCartUI();
+            toggleCart();
+        }
+
+        // --- 2. Custom Creator Logic ---
+        let selection = { head: '', heart: '', base: '' };
+
+        function selectNote(type, note) {
+            selection[type] = note;
+            
+            // UI Toggle
+            const buttons = document.querySelectorAll(`.note-group:nth-of-type(${type === 'head' ? 1 : type === 'heart' ? 2 : 3}) .note-opt`);
+            buttons.forEach(btn => btn.classList.remove('selected'));
+            event.target.classList.add('selected');
+
+            // Update Summary & Bottle Visual
+            const fill = (Object.values(selection).filter(v => v !== '').length) * 30;
+            document.getElementById('liquid-fill').style.height = `${20 + fill}%`;
+            
+            document.getElementById('perfume-summary').innerText = 
+                `${selection.head || '?'} | ${selection.heart || '?'} | ${selection.base || '?'}`;
+        }
+
+        function addCustomToCart() {
+            if(!selection.head || !selection.heart || !selection.base) {
+                alert("Veuillez sélectionner les 3 notes pour votre création.");
+                return;
+            }
+            addToCart(99, "Signature Sur Mesure", 145, "https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&q=80&w=100");
+            // Reset selection
+            selection = { head: '', heart: '', base: '' };
+            document.querySelectorAll('.note-opt').forEach(btn => btn.classList.remove('selected'));
+            document.getElementById('liquid-fill').style.height = `20%`;
+        }
+
+        // --- 3. Filters Logic ---
+        function filterProducts(category) {
+            const cards = document.querySelectorAll('.card');
+            const btns = document.querySelectorAll('.tab-btn');
+            
+            btns.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            cards.forEach(card => {
+                if(category === 'all') {
+                    card.style.display = 'block';
+                } else {
+                    card.classList.contains(category) ? card.style.display = 'block' : card.style.display = 'none';
+                }
+            });
+        }
+
+        // --- 4. Scroll Effects ---
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('main-nav');
+            window.scrollY > 50 ? nav.classList.add('scrolled') : nav.classList.remove('scrolled');
+            
+            // Reveal on scroll
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(el => {
+                const windowHeight = window.innerHeight;
+                const revealTop = el.getBoundingClientRect().top;
+                if (revealTop < windowHeight - 100) el.classList.add('active');
+            });
+        });
+
+        // Trigger first reveal
+        window.dispatchEvent(new Event('scroll'));
+    </script>
 </body>
 </html>
