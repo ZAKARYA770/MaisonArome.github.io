@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maison Arôme | Le parfum qui vous ressemble</title>
+    <title>Maison Arôme | Expérience 3D</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -12,178 +13,250 @@
             --gold: #D4AF37;
             --mocha: #5D4037;
         }
-        body { background-color: var(--ivory); color: var(--mocha); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
-        .font-serif { font-family: 'Cormorant Garamond', serif; }
+        body { background-color: var(--ivory); color: var(--mocha); font-family: 'Montserrat', sans-serif; margin: 0; overflow-x: hidden; }
+        .font-serif { font-family: 'Cormorant Gramamond', serif; }
         
-        .fade-in-up { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
-        .fade-in-up.visible { opacity: 1; transform: translateY(0); }
+        #canvas-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            pointer-events: none; /* Let mouse through to 3D canvas */
+        }
+
+        .interactive-element { pointer-events: auto; }
 
         .btn-luxe {
             background: linear-gradient(45deg, #D4AF37, #C5A028);
             color: white;
             transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
         }
-        .btn-luxe:hover { transform: scale(1.02); box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3); }
+        .btn-luxe:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(212, 175, 55, 0.4); }
 
-        .img-container { overflow: hidden; background: #fff; display: flex; align-items: center; justify-content: center; }
-        .img-container img { transition: transform 0.7s ease; width: 100%; height: 100%; object-fit: contain; }
-        .group:hover img { transform: scale(1.08); }
+        .fade-in { opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-        nav.scrolled { background: rgba(255, 255, 255, 0.95); padding: 10px 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        nav.scrolled { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); }
     </style>
 </head>
 <body>
 
-    <!-- NAV -->
-    <nav class="fixed w-full z-50 px-6 py-6 flex justify-between items-center transition-all duration-500" id="navbar">
+    <!-- NAVIGATION -->
+    <nav class="fixed w-full z-50 px-8 py-6 flex justify-between items-center transition-all duration-500" id="navbar">
         <div class="font-serif text-2xl tracking-[0.2em] font-semibold">MAISON ARÔME</div>
-        <div class="hidden md:flex space-x-8 text-[10px] tracking-[0.3em] uppercase font-bold">
-            <a href="#home" class="hover:text-[#D4AF37]">Accueil</a>
-            <a href="#collection" class="hover:text-[#D4AF37]">Collection</a>
-            <a href="#atelier" class="hover:text-[#D4AF37]">Sur Mesure</a>
+        <div class="hidden md:flex space-x-10 text-[10px] tracking-[0.4em] uppercase font-bold">
+            <a href="#home" class="hover:text-gold transition-colors">Accueil</a>
+            <a href="#collection" class="hover:text-gold transition-colors">Collection</a>
+            <a href="#atelier" class="hover:text-gold transition-colors">Sur Mesure</a>
         </div>
-        <div class="flex items-center space-x-4">
-            <span class="text-[10px] font-bold uppercase tracking-widest border-b border-gold pb-1">FR</span>
-        </div>
+        <div class="text-[10px] font-bold tracking-widest border-b border-gold pb-1 cursor-pointer">FR</div>
     </nav>
 
-    <!-- HERO SECTION -->
-    <section id="home" class="relative h-[85vh] flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 z-0">
-            <!-- TSWIRA DYAL L'ACCUEIL JPEG DANS DOSSIER IMAGES -->
-            <img src="images/image_9895df.jpeg" alt="Maison Arôme Background" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-white/10"></div>
-        </div>
-
-        <div class="relative z-10 text-center px-4 max-w-4xl">
-            <p class="text-[10px] uppercase tracking-[0.4em] mb-4 text-mocha fade-in-up font-bold">L'Art de la Personnalisation</p>
-            <h1 class="font-serif text-4xl md:text-5xl mb-8 text-mocha fade-in-up leading-tight drop-shadow-sm" style="transition-delay: 0.2s;">
+    <!-- HERO SECTION WITH THREE.JS -->
+    <section id="home" class="relative w-full h-screen">
+        <div id="canvas-container"></div>
+        
+        <div class="hero-content px-4">
+            <p class="text-[11px] uppercase tracking-[0.6em] mb-6 text-mocha/80 fade-in font-medium">L'Essence de l'Exceptionnel</p>
+            <h1 class="font-serif text-5xl md:text-8xl mb-10 text-mocha fade-in leading-tight" style="transition-delay: 0.2s;">
                 Le parfum qui <br><span class="italic text-gold">vous ressemble</span>
             </h1>
-            <div class="fade-in-up" style="transition-delay: 0.4s;">
-                <a href="#atelier" class="btn-luxe px-10 py-3 text-[9px] uppercase tracking-[0.3em] inline-block shadow-xl">Commencer l'Atelier</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- COLLECTION -->
-    <section id="collection" class="py-24 px-6 bg-white">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16 fade-in-up">
-                <p class="text-gold text-[10px] uppercase tracking-[0.4em] mb-3">Prêt à porter</p>
-                <h2 class="font-serif text-4xl italic">Collection Aromatique</h2>
-                <div class="w-12 h-[1px] bg-gold mx-auto mt-6"></div>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
-                <!-- LAVANDE -->
-                <div class="group fade-in-up">
-                    <div class="img-container aspect-[4/5] shadow-sm mb-6 border border-ivory p-4">
-                        <img src="images/lavande.jpeg" alt="Lavande Douce" onerror="this.style.display='none'">
-                    </div>
-                    <div class="text-center">
-                        <h3 class="font-serif text-xl mb-1">Lavande Douce</h3>
-                        <p class="text-[9px] uppercase tracking-widest opacity-50 mb-2">Floral & Apaisant</p>
-                        <span class="text-gold font-semibold">290 DH</span>
-                    </div>
-                </div>
-
-                <!-- EPICES -->
-                <div class="group fade-in-up" style="transition-delay: 0.1s;">
-                    <div class="img-container aspect-[4/5] shadow-sm mb-6 border border-ivory p-4">
-                        <img src="images/epices.jpeg" alt="Epices Chaleureuses" onerror="this.style.display='none'">
-                    </div>
-                    <div class="text-center">
-                        <h3 class="font-serif text-xl mb-1">Épices Chaleureuses</h3>
-                        <p class="text-[9px] uppercase tracking-widest opacity-50 mb-2">Oriental & Mystique</p>
-                        <span class="text-gold font-semibold">350 DH</span>
-                    </div>
-                </div>
-
-                <!-- BOIS -->
-                <div class="group fade-in-up" style="transition-delay: 0.2s;">
-                    <div class="img-container aspect-[4/5] shadow-sm mb-6 border border-ivory p-4">
-                        <img src="images/bois.jpeg" alt="Bois Mystiques" onerror="this.style.display='none'">
-                    </div>
-                    <div class="text-center">
-                        <h3 class="font-serif text-xl mb-1">Bois Mystiques</h3>
-                        <p class="text-[9px] uppercase tracking-widest opacity-50 mb-2">Intense & Profond</p>
-                        <span class="text-gold font-semibold">380 DH</span>
-                    </div>
-                </div>
-
-                <!-- HESPERIDES -->
-                <div class="group fade-in-up" style="transition-delay: 0.3s;">
-                    <div class="img-container aspect-[4/5] shadow-sm mb-6 border border-ivory p-4">
-                        <img src="images/hesperides.jpeg" alt="Hesperides" onerror="this.style.display='none'">
-                    </div>
-                    <div class="text-center">
-                        <h3 class="font-serif text-xl mb-1">Hespérides</h3>
-                        <p class="text-[9px] uppercase tracking-widest opacity-50 mb-2">Frais & Agrumes</p>
-                        <span class="text-gold font-semibold">250 DH</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ATELIER (SUR MESURE) -->
-    <section id="atelier" class="py-24 px-6 bg-ivory">
-        <div class="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-16">
-            <div class="lg:w-1/2 fade-in-up">
-                <h2 class="font-serif text-4xl mb-6 italic text-gold">L'Atelier de Création</h2>
-                <p class="text-sm font-light leading-relaxed mb-10 opacity-80">
-                    Maison Arôme vous offre un parfum unique, créé exclusivement pour vous, qui reflète votre personnalité et vos émotions. Choisissez vos notes et laissez la magie opérer.
-                </p>
-                
-                <div class="space-y-4">
-                    <div class="p-5 bg-white border border-gold/10 flex justify-between items-center group cursor-pointer hover:bg-gold/5 transition-all">
-                        <span class="text-[10px] uppercase tracking-widest font-bold">1. Choisir ma famille olfactive</span>
-                        <span class="text-gold">→</span>
-                    </div>
-                    <div class="p-5 bg-white border border-gold/10 flex justify-between items-center group cursor-pointer hover:bg-gold/5 transition-all opacity-50">
-                        <span class="text-[10px] uppercase tracking-widest font-bold">2. Définir l'intensité</span>
-                        <span class="text-gold">→</span>
-                    </div>
-                    <div class="p-5 bg-white border border-gold/10 flex justify-between items-center group cursor-pointer hover:bg-gold/5 transition-all opacity-50">
-                        <span class="text-[10px] uppercase tracking-widest font-bold">3. Finaliser mon pack</span>
-                        <span class="text-gold">→</span>
-                    </div>
-                </div>
+            <div class="fade-in interactive-element" style="transition-delay: 0.4s;">
+                <a href="#atelier" class="btn-luxe px-12 py-5 text-[10px] uppercase tracking-[0.4em] inline-block">Commencer l'Atelier</a>
             </div>
             
-            <div class="lg:w-1/2 fade-in-up relative" style="transition-delay: 0.2s;">
-                <div class="absolute -inset-3 border border-gold/20 translate-x-3 translate-y-3"></div>
-                <!-- Utilisation de la même image hero pour l'atelier -->
-                <img src="images/image_9895df.jpeg" alt="Atelier Signature" class="w-full grayscale hover:grayscale-0 transition-all duration-1000 shadow-2xl">
+            <div class="absolute bottom-10 left-1/2 -translate-x-1/2 fade-in" style="transition-delay: 0.8s;">
+                <div class="w-[1px] h-16 bg-gold/30 relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-1/2 bg-gold animate-bounce"></div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer class="bg-mocha text-ivory py-16 px-6">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center border-b border-ivory/10 pb-10">
-            <div class="font-serif text-2xl tracking-widest mb-6 md:mb-0">MAISON ARÔME</div>
-            <div class="flex space-x-10 text-[9px] tracking-widest uppercase font-bold">
-                <a href="#" class="hover:text-gold">Instagram</a>
-                <a href="#" class="hover:text-gold">TikTok</a>
-                <a href="#" class="hover:text-gold">Contact</a>
+    <!-- COLLECTION SECTION -->
+    <section id="collection" class="py-32 bg-white relative z-10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-24 fade-in">
+                <p class="text-gold text-xs uppercase tracking-[0.5em] mb-4">Parfums Prêts</p>
+                <h2 class="font-serif text-5xl italic">Collection Aromatique</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16">
+                <!-- PRODUCT 1 -->
+                <div class="group fade-in">
+                    <div class="aspect-[3/4] bg-[#FDFBF7] mb-8 overflow-hidden relative border border-ivory p-8">
+                        <img src="images/lavande.jpeg" alt="Lavande" class="w-full h-full object-contain transition-transform duration-700 group-hover:scale-110">
+                    </div>
+                    <div class="text-center">
+                        <h3 class="font-serif text-2xl mb-2">Lavande Douce</h3>
+                        <p class="text-gold font-medium tracking-widest">290 DH</p>
+                    </div>
+                </div>
+                <!-- PRODUCT 2 -->
+                <div class="group fade-in" style="transition-delay: 0.1s;">
+                    <div class="aspect-[3/4] bg-[#FDFBF7] mb-8 overflow-hidden relative border border-ivory p-8">
+                        <img src="images/epices.jpeg" alt="Epices" class="w-full h-full object-contain transition-transform duration-700 group-hover:scale-110">
+                    </div>
+                    <div class="text-center">
+                        <h3 class="font-serif text-2xl mb-2">Épices Chaleureuses</h3>
+                        <p class="text-gold font-medium tracking-widest">350 DH</p>
+                    </div>
+                </div>
+                <!-- PRODUCT 3 -->
+                <div class="group fade-in" style="transition-delay: 0.2s;">
+                    <div class="aspect-[3/4] bg-[#FDFBF7] mb-8 overflow-hidden relative border border-ivory p-8">
+                        <img src="images/bois.jpeg" alt="Bois" class="w-full h-full object-contain transition-transform duration-700 group-hover:scale-110">
+                    </div>
+                    <div class="text-center">
+                        <h3 class="font-serif text-2xl mb-2">Bois Mystiques</h3>
+                        <p class="text-gold font-medium tracking-widest">380 DH</p>
+                    </div>
+                </div>
+                <!-- PRODUCT 4 -->
+                <div class="group fade-in" style="transition-delay: 0.3s;">
+                    <div class="aspect-[3/4] bg-[#FDFBF7] mb-8 overflow-hidden relative border border-ivory p-8">
+                        <img src="images/hesperides.jpeg" alt="Hesperides" class="w-full h-full object-contain transition-transform duration-700 group-hover:scale-110">
+                    </div>
+                    <div class="text-center">
+                        <h3 class="font-serif text-2xl mb-2">Hespérides</h3>
+                        <p class="text-gold font-medium tracking-widest">250 DH</p>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="text-center pt-10">
-            <p class="text-[8px] uppercase tracking-[0.4em] opacity-30">© 2026 Maison Arôme • Rabat, Maroc.</p>
+    </section>
+
+    <!-- ATELIER SECTION -->
+    <section id="atelier" class="py-32 bg-ivory relative overflow-hidden">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col lg:flex-row items-center gap-20">
+            <div class="lg:w-1/2 fade-in">
+                <h2 class="font-serif text-5xl mb-8 italic text-gold leading-tight">Créez votre propre <br>univers olfactif</h2>
+                <p class="text-sm font-light leading-relaxed mb-12 opacity-80 max-w-md">
+                    Chaque personne est unique, son parfum devrait l'être aussi. Participez à notre atelier interactif pour composer une fragrance qui ne ressemble qu'à vous.
+                </p>
+                <div class="space-y-6">
+                    <div class="flex items-center space-x-6 border-b border-gold/20 pb-4">
+                        <span class="text-gold font-serif text-2xl">01</span>
+                        <span class="uppercase tracking-widest text-[10px] font-bold">Sélection des notes de tête</span>
+                    </div>
+                    <div class="flex items-center space-x-6 border-b border-gold/20 pb-4">
+                        <span class="text-gold font-serif text-2xl">02</span>
+                        <span class="uppercase tracking-widest text-[10px] font-bold">Équilibre du cœur</span>
+                    </div>
+                    <div class="flex items-center space-x-6 border-b border-gold/20 pb-4">
+                        <span class="text-gold font-serif text-2xl">03</span>
+                        <span class="uppercase tracking-widest text-[10px] font-bold">Signature du fond</span>
+                    </div>
+                </div>
+            </div>
+            <div class="lg:w-1/2 fade-in" style="transition-delay: 0.2s;">
+                <div class="relative p-4 border border-gold/30">
+                    <img src="images/image_9895df.jpeg" alt="Atelier" class="w-full grayscale hover:grayscale-0 transition-all duration-1000 shadow-2xl">
+                </div>
+            </div>
         </div>
+    </section>
+
+    <footer class="py-20 bg-white border-t border-gold/10 text-center">
+        <div class="font-serif text-3xl tracking-[0.3em] mb-10">MAISON ARÔME</div>
+        <div class="flex justify-center space-x-12 text-[10px] uppercase tracking-[0.3em] mb-16">
+            <a href="#" class="hover:text-gold">Instagram</a>
+            <a href="#" class="hover:text-gold">TikTok</a>
+            <a href="#" class="hover:text-gold">Contact</a>
+        </div>
+        <p class="text-[9px] uppercase tracking-[0.4em] opacity-40">© 2026 Maison Arôme • Rabat - Maroc</p>
     </footer>
 
     <script>
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('visible');
+        // --- THREE.JS 3D HERO EFFECT ---
+        let scene, camera, renderer, planeMesh;
+        const container = document.getElementById('canvas-container');
+        const loader = new THREE.TextureLoader();
+
+        function init3D() {
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 5;
+
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            container.appendChild(renderer.domElement);
+
+            // Path dial tswira dyalk
+            const texture = loader.load('images/image_9895df.jpeg');
+
+            // Créer le plan 3D
+            const geometry = new THREE.PlaneGeometry(12, 8, 32, 32);
+            const material = new THREE.MeshBasicMaterial({ 
+                map: texture,
+                transparent: true,
+                opacity: 0.9
             });
-        }, { threshold: 0.1 });
+            planeMesh = new THREE.Mesh(geometry, material);
+            scene.add(planeMesh);
 
-        document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+            animate();
+        }
 
+        // Mouse Move Effect
+        let mouseX = 0;
+        let mouseY = 0;
+        window.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX / window.innerWidth) - 0.5;
+            mouseY = (e.clientY / window.innerHeight) - 0.5;
+        });
+
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            // Subtle rotation / movement
+            if (planeMesh) {
+                planeMesh.rotation.y = THREE.MathUtils.lerp(planeMesh.rotation.y, mouseX * 0.15, 0.05);
+                planeMesh.rotation.x = THREE.MathUtils.lerp(planeMesh.rotation.x, -mouseY * 0.1, 0.05);
+                planeMesh.position.x = THREE.MathUtils.lerp(planeMesh.position.x, mouseX * 0.5, 0.05);
+            }
+
+            renderer.render(scene, camera);
+        }
+
+        // Resize handler
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // Initialize on Load
+        window.onload = () => {
+            init3D();
+            
+            // Reveal animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add('visible');
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+        };
+
+        // Scroll Navbar
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
             if (window.scrollY > 50) nav.classList.add('scrolled');
