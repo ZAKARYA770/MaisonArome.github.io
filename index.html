@@ -3,49 +3,192 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maison Arôme | Accueil Luxe</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@200;300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    <title>Maison Arôme | Le parfum qui vous ressemble</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ivory: #F9F7F2;
+            --gold: #D4AF37;
+            --mocha: #5D4037;
+        }
+        body { background-color: var(--ivory); color: var(--mocha); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
+        .font-serif { font-family: 'Cormorant Garamond', serif; }
+        
+        .fade-in-up { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+        .fade-in-up.visible { opacity: 1; transform: translateY(0); }
+
+        .btn-luxe {
+            background: linear-gradient(45deg, #D4AF37, #C5A028);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .btn-luxe:hover { transform: scale(1.02); box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3); }
+
+        .img-container { overflow: hidden; background: #fff; display: flex; align-items: center; justify-content: center; }
+        .img-container img { transition: transform 0.7s ease; width: 100%; height: 100%; object-fit: contain; }
+        .group:hover img { transform: scale(1.08); }
+
+        nav.scrolled { background: rgba(255, 255, 255, 0.95); padding: 10px 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+    </style>
 </head>
 <body>
 
-    <nav id="main-nav" class="scrolled">
-        <div class="logo">
-            <a href="index.html">
-                <img src="logo.png" alt="Maison Arôme" class="brand-logo">
-            </a>
+    <!-- NAV -->
+    <nav class="fixed w-full z-50 px-6 py-6 flex justify-between items-center transition-all duration-500" id="navbar">
+        <div class="font-serif text-2xl tracking-[0.2em] font-semibold">MAISON ARÔME</div>
+        <div class="hidden md:flex space-x-8 text-[10px] tracking-[0.3em] uppercase font-bold">
+            <a href="#home" class="hover:text-[#D4AF37]">Accueil</a>
+            <a href="#collection" class="hover:text-[#D4AF37]">Collection</a>
+            <a href="#atelier" class="hover:text-[#D4AF37]">Sur Mesure</a>
         </div>
-        <div class="nav-links">
-            <a href="index.html">ACCUEIL</a>
-            <a href="collection.html">COLLECTION</a>
-            <a href="personnalisation.html">PERSONNALISATION</a>
-            <a href="contact.html">CONTACT</a>
-        </div>
-        <div class="nav-icons" onclick="toggleCart()">
-            <div class="cart-icon-wrapper">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4H6zM3 6h18M16 10a4 4 0 01-8 0" /></svg>
-                <span class="cart-count" id="cart-count">0</span>
-            </div>
+        <div class="flex items-center space-x-4">
+            <span class="text-[10px] font-bold uppercase tracking-widest border-b border-gold pb-1">FR</span>
         </div>
     </nav>
 
-    <section id="hero" class="hero">
-        <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&q=80&w=1920" class="hero-video-bg">
-        <div class="hero-content">
-            <h1>Votre Signature,<br>Dans un flacon d'exception.</h1>
-            <a href="personnalisation.html" class="btn-gold">Débuter la création</a>
+    <!-- HERO SECTION -->
+    <section id="home" class="relative h-[85vh] flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <!-- TSWIRA DYAL L'ACCUEIL JPEG DANS DOSSIER IMAGES -->
+            <img src="images/image_9895df.jpeg" alt="Maison Arôme Background" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-white/10"></div>
+        </div>
+
+        <div class="relative z-10 text-center px-4 max-w-4xl">
+            <p class="text-[10px] uppercase tracking-[0.4em] mb-4 text-mocha fade-in-up font-bold">L'Art de la Personnalisation</p>
+            <h1 class="font-serif text-4xl md:text-5xl mb-8 text-mocha fade-in-up leading-tight drop-shadow-sm" style="transition-delay: 0.2s;">
+                Le parfum qui <br><span class="italic text-gold">vous ressemble</span>
+            </h1>
+            <div class="fade-in-up" style="transition-delay: 0.4s;">
+                <a href="#atelier" class="btn-luxe px-10 py-3 text-[9px] uppercase tracking-[0.3em] inline-block shadow-xl">Commencer l'Atelier</a>
+            </div>
         </div>
     </section>
 
-    <div id="cart-modal">
-        <div class="cart-header"><h3>Mon Panier</h3><button onclick="toggleCart()">&times;</button></div>
-        <div id="cart-list"></div>
-        <div class="cart-total">
-            <div style="display: flex; justify-content: space-between;"><span>Total</span><span id="cart-total-price">0,00 €</span></div>
-            <button class="checkout-btn">Payer</button>
-        </div>
-    </div>
+    <!-- COLLECTION -->
+    <section id="collection" class="py-24 px-6 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 fade-in-up">
+                <p class="text-gold text-[10px] uppercase tracking-[0.4em] mb-3">Prêt à porter</p>
+                <h2 class="font-serif text-4xl italic">Collection Aromatique</h2>
+                <div class="w-12 h-[1px] bg-gold mx-auto mt-6"></div>
+            </div>
 
-    <script src="js/script.js"></script>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
+                <!-- LAVANDE -->
+                <div class="group fade-in-up">
+                    <div class="img-container aspect-[4/5] shadow-sm mb-6 border border-ivory p-4">
+                        <img src="images/lavande.jpeg" alt="Lavande Douce" onerror="this.style.display='none'">
+                    </div>
+                    <div class="text-center">
+                        <h3 class="font-serif text-xl mb-1">Lavande Douce</h3>
+                        <p class="text-[9px] uppercase tracking-widest opacity-50 mb-2">Floral & Apaisant</p>
+                        <span class="text-gold font-semibold">290 DH</span>
+                    </div>
+                </div>
+
+                <!-- EPICES -->
+                <div class="group fade-in-up" style="transition-delay: 0.1s;">
+                    <div class="img-container aspect-[4/5] shadow-sm mb-6 border border-ivory p-4">
+                        <img src="images/epices.jpeg" alt="Epices Chaleureuses" onerror="this.style.display='none'">
+                    </div>
+                    <div class="text-center">
+                        <h3 class="font-serif text-xl mb-1">Épices Chaleureuses</h3>
+                        <p class="text-[9px] uppercase tracking-widest opacity-50 mb-2">Oriental & Mystique</p>
+                        <span class="text-gold font-semibold">350 DH</span>
+                    </div>
+                </div>
+
+                <!-- BOIS -->
+                <div class="group fade-in-up" style="transition-delay: 0.2s;">
+                    <div class="img-container aspect-[4/5] shadow-sm mb-6 border border-ivory p-4">
+                        <img src="images/bois.jpeg" alt="Bois Mystiques" onerror="this.style.display='none'">
+                    </div>
+                    <div class="text-center">
+                        <h3 class="font-serif text-xl mb-1">Bois Mystiques</h3>
+                        <p class="text-[9px] uppercase tracking-widest opacity-50 mb-2">Intense & Profond</p>
+                        <span class="text-gold font-semibold">380 DH</span>
+                    </div>
+                </div>
+
+                <!-- HESPERIDES -->
+                <div class="group fade-in-up" style="transition-delay: 0.3s;">
+                    <div class="img-container aspect-[4/5] shadow-sm mb-6 border border-ivory p-4">
+                        <img src="images/hesperides.jpeg" alt="Hesperides" onerror="this.style.display='none'">
+                    </div>
+                    <div class="text-center">
+                        <h3 class="font-serif text-xl mb-1">Hespérides</h3>
+                        <p class="text-[9px] uppercase tracking-widest opacity-50 mb-2">Frais & Agrumes</p>
+                        <span class="text-gold font-semibold">250 DH</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ATELIER (SUR MESURE) -->
+    <section id="atelier" class="py-24 px-6 bg-ivory">
+        <div class="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-16">
+            <div class="lg:w-1/2 fade-in-up">
+                <h2 class="font-serif text-4xl mb-6 italic text-gold">L'Atelier de Création</h2>
+                <p class="text-sm font-light leading-relaxed mb-10 opacity-80">
+                    Maison Arôme vous offre un parfum unique, créé exclusivement pour vous, qui reflète votre personnalité et vos émotions. Choisissez vos notes et laissez la magie opérer.
+                </p>
+                
+                <div class="space-y-4">
+                    <div class="p-5 bg-white border border-gold/10 flex justify-between items-center group cursor-pointer hover:bg-gold/5 transition-all">
+                        <span class="text-[10px] uppercase tracking-widest font-bold">1. Choisir ma famille olfactive</span>
+                        <span class="text-gold">→</span>
+                    </div>
+                    <div class="p-5 bg-white border border-gold/10 flex justify-between items-center group cursor-pointer hover:bg-gold/5 transition-all opacity-50">
+                        <span class="text-[10px] uppercase tracking-widest font-bold">2. Définir l'intensité</span>
+                        <span class="text-gold">→</span>
+                    </div>
+                    <div class="p-5 bg-white border border-gold/10 flex justify-between items-center group cursor-pointer hover:bg-gold/5 transition-all opacity-50">
+                        <span class="text-[10px] uppercase tracking-widest font-bold">3. Finaliser mon pack</span>
+                        <span class="text-gold">→</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="lg:w-1/2 fade-in-up relative" style="transition-delay: 0.2s;">
+                <div class="absolute -inset-3 border border-gold/20 translate-x-3 translate-y-3"></div>
+                <!-- Utilisation de la même image hero pour l'atelier -->
+                <img src="images/image_9895df.jpeg" alt="Atelier Signature" class="w-full grayscale hover:grayscale-0 transition-all duration-1000 shadow-2xl">
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-mocha text-ivory py-16 px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center border-b border-ivory/10 pb-10">
+            <div class="font-serif text-2xl tracking-widest mb-6 md:mb-0">MAISON ARÔME</div>
+            <div class="flex space-x-10 text-[9px] tracking-widest uppercase font-bold">
+                <a href="#" class="hover:text-gold">Instagram</a>
+                <a href="#" class="hover:text-gold">TikTok</a>
+                <a href="#" class="hover:text-gold">Contact</a>
+            </div>
+        </div>
+        <div class="text-center pt-10">
+            <p class="text-[8px] uppercase tracking-[0.4em] opacity-30">© 2026 Maison Arôme • Rabat, Maroc.</p>
+        </div>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) nav.classList.add('scrolled');
+            else nav.classList.remove('scrolled');
+        });
+    </script>
 </body>
 </html>
