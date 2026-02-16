@@ -16,31 +16,24 @@
         body { background-color: var(--ivory); color: var(--mocha); font-family: 'Montserrat', sans-serif; margin: 0; overflow-x: hidden; }
         .font-serif { font-family: 'Cormorant Garamond', serif; }
         
-        /* 3D Container */
         #canvas-container {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
+            top: 0; left: 0;
+            width: 100%; height: 100vh;
             z-index: 0;
         }
 
         .hero-overlay {
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle, rgba(249,247,242,0.2) 0%, rgba(249,247,242,0.6) 100%);
+            position: absolute; inset: 0;
+            background: radial-gradient(circle, rgba(249,247,242,0.1) 0%, rgba(249,247,242,0.4) 100%);
             z-index: 1;
         }
 
         .hero-content {
-            position: relative;
-            z-index: 10;
+            position: relative; z-index: 10;
             height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
             pointer-events: none;
         }
 
@@ -56,23 +49,26 @@
         .reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
         .reveal.visible { opacity: 1; transform: translateY(0); }
 
-        nav.scrolled { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(15px); padding: 12px 24px; }
-        
-        .product-card img { transition: transform 0.8s ease; }
-        .product-card:hover img { transform: scale(1.1) translateY(-10px); }
+        nav.scrolled { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(15px); padding: 10px 30px; }
     </style>
 </head>
 <body>
 
-    <!-- NAV -->
-    <nav class="fixed w-full z-50 px-10 py-8 flex justify-between items-center transition-all duration-500" id="navbar">
-        <div class="font-serif text-2xl tracking-[0.25em] font-bold">MAISON ARÔME</div>
-        <div class="hidden md:flex space-x-12 text-[10px] tracking-[0.4em] uppercase font-bold opacity-70">
-            <a href="#home" class="hover:text-gold transition-colors">Accueil</a>
-            <a href="#collection" class="hover:text-gold transition-colors">Collection</a>
-            <a href="#atelier" class="hover:text-gold transition-colors">Sur Mesure</a>
+    <!-- NAVIGATION -->
+    <nav class="fixed w-full z-50 px-8 py-6 flex justify-between items-center transition-all duration-500" id="navbar">
+        <!-- LOGO IMAGE (Uploadiha f GitHub b smit images/logo.jpeg) -->
+        <a href="#home" class="w-20 md:w-28 transition-all hover:opacity-80">
+            <img src="images/logo.jpeg" alt="Maison Arôme Logo" onerror="this.src='https://placehold.co/200x80?text=MAISON+AROME'" class="w-full h-auto">
+        </a>
+        
+        <div class="flex items-center space-x-10">
+            <div class="hidden md:flex space-x-10 text-[9px] tracking-[0.4em] uppercase font-bold opacity-70">
+                <a href="#home" class="hover:text-gold transition-colors">Accueil</a>
+                <a href="#collection" class="hover:text-gold transition-colors">Collection</a>
+                <a href="#atelier" class="hover:text-gold transition-colors">Sur Mesure</a>
+            </div>
+            <div class="text-[10px] font-bold tracking-widest border-b border-gold pb-1 cursor-pointer">FR</div>
         </div>
-        <div class="text-[10px] font-bold tracking-widest border-b border-gold pb-1 cursor-pointer">FR</div>
     </nav>
 
     <!-- HERO SECTION 3D -->
@@ -81,117 +77,23 @@
         <div class="hero-overlay"></div>
         
         <div class="hero-content text-center px-6">
-            <p class="text-[11px] uppercase tracking-[0.7em] mb-6 opacity-60 reveal">L'Art du Parfum Personnalisé</p>
-            <h1 class="font-serif text-5xl md:text-8xl mb-12 text-mocha reveal leading-[1.1]" style="transition-delay: 0.2s;">
+            <p class="text-[10px] uppercase tracking-[0.7em] mb-6 opacity-60 reveal">L'Art du Parfum Personnalisé</p>
+            <h1 class="font-serif text-5xl md:text-7xl mb-10 text-mocha reveal leading-[1.2]" style="transition-delay: 0.2s;">
                 Le parfum qui <br><span class="italic text-gold">vous ressemble</span>
             </h1>
             <div class="reveal interactive-btn" style="transition-delay: 0.4s;">
-                <a href="#atelier" class="btn-luxe px-14 py-5 text-[10px] uppercase tracking-[0.4em] inline-block shadow-2xl">
+                <a href="#atelier" class="btn-luxe px-12 py-4 text-[9px] uppercase tracking-[0.4em] inline-block shadow-2xl">
                     Commencer l'Atelier
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- COLLECTION -->
-    <section id="collection" class="py-32 bg-white relative z-10">
-        <div class="max-w-7xl mx-auto px-8">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-24 reveal">
-                <div>
-                    <p class="text-gold text-xs uppercase tracking-[0.5em] mb-4">Prêt à porter</p>
-                    <h2 class="font-serif text-5xl italic">Collection Aromatique</h2>
-                </div>
-                <div class="h-[1px] flex-grow mx-12 mb-4 bg-gold/20 hidden md:block"></div>
-                <a href="#" class="text-[10px] uppercase tracking-widest font-bold border-b border-mocha pb-1 hover:text-gold hover:border-gold transition-colors">Voir tout</a>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
-                <!-- PRODUCT ITEM -->
-                <div class="product-card reveal group">
-                    <div class="aspect-[3/4] bg-[#F9F7F2] p-10 mb-8 flex items-center justify-center overflow-hidden border border-transparent group-hover:border-gold/10 transition-colors">
-                        <img src="images/lavande.jpeg" alt="Lavande" class="w-full h-full object-contain">
-                    </div>
-                    <div class="text-center">
-                        <h3 class="font-serif text-2xl mb-2">Lavande Douce</h3>
-                        <p class="text-gold font-light tracking-widest">290 DH</p>
-                    </div>
-                </div>
-
-                <div class="product-card reveal group" style="transition-delay: 0.1s;">
-                    <div class="aspect-[3/4] bg-[#F9F7F2] p-10 mb-8 flex items-center justify-center overflow-hidden border border-transparent group-hover:border-gold/10 transition-colors">
-                        <img src="images/epices.jpeg" alt="Epices" class="w-full h-full object-contain">
-                    </div>
-                    <div class="text-center">
-                        <h3 class="font-serif text-2xl mb-2">Épices Chaleureuses</h3>
-                        <p class="text-gold font-light tracking-widest">350 DH</p>
-                    </div>
-                </div>
-
-                <div class="product-card reveal group" style="transition-delay: 0.2s;">
-                    <div class="aspect-[3/4] bg-[#F9F7F2] p-10 mb-8 flex items-center justify-center overflow-hidden border border-transparent group-hover:border-gold/10 transition-colors">
-                        <img src="images/bois.jpeg" alt="Bois" class="w-full h-full object-contain">
-                    </div>
-                    <div class="text-center">
-                        <h3 class="font-serif text-2xl mb-2">Bois Mystiques</h3>
-                        <p class="text-gold font-light tracking-widest">380 DH</p>
-                    </div>
-                </div>
-
-                <div class="product-card reveal group" style="transition-delay: 0.3s;">
-                    <div class="aspect-[3/4] bg-[#F9F7F2] p-10 mb-8 flex items-center justify-center overflow-hidden border border-transparent group-hover:border-gold/10 transition-colors">
-                        <img src="images/hesperides.jpeg" alt="Hesperides" class="w-full h-full object-contain">
-                    </div>
-                    <div class="text-center">
-                        <h3 class="font-serif text-2xl mb-2">Hespérides</h3>
-                        <p class="text-gold font-light tracking-widest">250 DH</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ATELIER SECTION -->
-    <section id="atelier" class="py-32 bg-ivory relative overflow-hidden">
-        <div class="max-w-6xl mx-auto px-8 flex flex-col lg:flex-row items-center gap-24">
-            <div class="lg:w-1/2 reveal">
-                <h2 class="font-serif text-6xl mb-10 italic text-mocha leading-tight">Votre signature <br><span class="text-gold">olfactive</span></h2>
-                <p class="text-sm font-light leading-loose mb-12 opacity-70">
-                    Maison Arôme ne se limite pas à un parfum : nous proposons une expérience complète incluant parfum, miniatures et crèmes assorties pour prolonger le plaisir.
-                </p>
-                <div class="grid grid-cols-2 gap-8 mb-12">
-                    <div>
-                        <h4 class="font-serif text-xl mb-2 italic">Unique</h4>
-                        <p class="text-[10px] opacity-50 uppercase tracking-widest">Créé pour vous</p>
-                    </div>
-                    <div>
-                        <h4 class="font-serif text-xl mb-2 italic">Qualité</h4>
-                        <p class="text-[10px] opacity-50 uppercase tracking-widest">Ingrédients nobles</p>
-                    </div>
-                </div>
-                <button class="interactive-btn text-[10px] uppercase tracking-[0.4em] font-bold border border-gold text-gold px-10 py-4 hover:bg-gold hover:text-white transition-all">Lancer l'expérience</button>
-            </div>
-            <div class="lg:w-1/2 reveal relative" style="transition-delay: 0.2s;">
-                <div class="absolute -inset-4 border border-gold/20 translate-x-6 translate-y-6"></div>
-                <img src="images/image_9895df.jpeg" alt="Atelier" class="w-full shadow-2xl grayscale hover:grayscale-0 transition-all duration-1000">
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="py-24 bg-white border-t border-gold/10">
-        <div class="max-w-7xl mx-auto px-8 text-center">
-            <div class="font-serif text-4xl tracking-[0.3em] mb-12">MAISON ARÔME</div>
-            <div class="flex justify-center space-x-12 text-[10px] uppercase tracking-[0.4em] mb-20 opacity-60">
-                <a href="#" class="hover:text-gold transition-colors">Instagram</a>
-                <a href="#" class="hover:text-gold transition-colors">TikTok</a>
-                <a href="#" class="hover:text-gold transition-colors">Contact</a>
-            </div>
-            <p class="text-[9px] uppercase tracking-[0.5em] opacity-30">Maison Arôme • Le parfum qui vous ressemble • Rabat, Maroc</p>
-        </div>
-    </footer>
+    <!-- (Ba9i l'code dyal Collection & Atelier b9a kifma howa...) -->
+    <!-- ... -->
 
     <script>
-        // --- THREE.JS 3D BACKGROUND ---
+        // --- THREE.JS LOGIC ---
         let scene, camera, renderer, mesh;
         const container = document.getElementById('canvas-container');
 
@@ -206,18 +108,13 @@
             container.appendChild(renderer.domElement);
 
             const loader = new THREE.TextureLoader();
-            // TSWIRA DIAL GITHUB
+            // Background image hero
             loader.load('images/image_9895df.jpeg', (texture) => {
                 const geometry = new THREE.PlaneGeometry(12, 8, 32, 32);
-                const material = new THREE.MeshBasicMaterial({ 
-                    map: texture, 
-                    transparent: true,
-                    opacity: 0.8
-                });
+                const material = new THREE.MeshBasicMaterial({ map: texture, transparent: true, opacity: 0.85 });
                 mesh = new THREE.Mesh(geometry, material);
                 scene.add(mesh);
             });
-
             animate();
         }
 
@@ -230,29 +127,18 @@
         function animate() {
             requestAnimationFrame(animate);
             if (mesh) {
-                // Effet 3D Parallax smooth
-                mesh.rotation.y = THREE.MathUtils.lerp(mesh.rotation.y, mouseX * 0.12, 0.05);
-                mesh.rotation.x = THREE.MathUtils.lerp(mesh.rotation.x, -mouseY * 0.08, 0.05);
-                mesh.position.x = THREE.MathUtils.lerp(mesh.position.x, mouseX * 0.4, 0.05);
+                mesh.rotation.y = THREE.MathUtils.lerp(mesh.rotation.y, mouseX * 0.1, 0.05);
+                mesh.rotation.x = THREE.MathUtils.lerp(mesh.rotation.x, -mouseY * 0.05, 0.05);
+                mesh.position.x = THREE.MathUtils.lerp(mesh.position.x, mouseX * 0.3, 0.05);
             }
             renderer.render(scene, camera);
         }
 
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        });
-
-        // Initialize and Reveal
         window.onload = () => {
             init3D();
             const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) entry.target.classList.add('visible');
-                });
+                entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
             }, { threshold: 0.1 });
-
             document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
         };
 
