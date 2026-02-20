@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="MAISON AROME - Découvrez notre palette d'arômes. Essences rares et ingrédients d'exception pour vos parfums de luxe.">
+    <meta name="keywords" content="parfum luxe, arômes, ingrédients parfum, rose damascena, oud royal, MAISON AROME">
+    <meta name="author" content="MAISON AROME">
+    <meta name="robots" content="index, follow">
+
+    <title>Arômes - MAISON AROME | Palette d'Essences Rares</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="https://i.postimg.cc/KzG3Qyy3/logo-M-A.png">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+</head>
+
+<body>
+
+    <!-- ==================== HEADER ==================== -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Logo -->
+                <a href="index.html" class="logo">
+                    <img src="photo/logo.jpeg" alt="Maison Arôme Logo" class="logo-img">
+                    MAISON <span class="logo-accent">AROME</span>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="nav" id="nav-menu">
+                    <ul class="nav-list">
+                        <li><a href="index.html" class="nav-link">Accueil</a></li>
+                        <li><a href="aromes.html" class="nav-link active">Arômes</a></li>
+                        <li><a href="creer.html" class="nav-link">Créer Mon Parfum</a></li>
+                        <li><a href="apropos.html" class="nav-link">À Propos</a></li>
+                        <li><a href="contact.html" class="nav-link">Contact</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Header Actions -->
+                <div class="header-actions">
+                    <button class="cart-btn" id="cart-btn" aria-label="Panier">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+                            <line x1="3" y1="6" x2="21" y2="6" />
+                            <path d="M16 10a4 4 0 0 1-8 0" />
+                        </svg>
+                        <span class="cart-badge" id="cart-badge">0</span>
+                    </button>
+
+                    <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== MOBILE CART BUTTON ==================== -->
+    <button class="mobile-cart-btn" id="mobile-cart-btn" style="display: none;">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <path d="M16 10a4 4 0 0 1-8 0" />
+        </svg>
+        <span class="cart-badge" id="mobile-cart-badge">0</span>
+    </button>
+
+    <!-- ==================== CART SIDEBAR ==================== -->
+    <div class="cart-overlay" id="cart-overlay"></div>
+    <aside class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h2>Votre Panier</h2>
+            <button class="cart-close" id="cart-close" aria-label="Fermer">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+            </button>
+        </div>
+
+        <div class="cart-items" id="cart-items">
+            <div class="cart-empty">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+                    <line x1="3" y1="6" x2="21" y2="6" />
+                    <path d="M16 10a4 4 0 0 1-8 0" />
+                </svg>
+                <p>Votre panier est vide</p>
+            </div>
+        </div>
+
+        <div id="checkout-form-container" style="display: none; padding: 1.5rem;">
+            <h3 class="checkout-title">Détails de Livraison</h3>
+            <form id="checkout-form">
+                <div class="form-group">
+                    <label for="checkout-name">Nom Complet</label>
+                    <input type="text" id="checkout-name" required placeholder="Votre nom">
+                </div>
+                <div class="form-group">
+                    <label for="checkout-phone">Téléphone</label>
+                    <input type="tel" id="checkout-phone" required placeholder="Ex: 0612345678">
+                </div>
+                <div class="form-group">
+                    <label for="checkout-address">Addresse de livraison</label>
+                    <textarea id="checkout-address" required placeholder="Votre adresse complète"></textarea>
+                </div>
+                <div class="checkout-actions">
+                    <button type="button" class="btn btn-secondary" id="back-to-cart">Retour</button>
+                    <button type="submit" class="btn btn-primary" id="confirm-order-btn">Confirmer la
+                        Commande</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="cart-footer" id="cart-footer" style="display: none;">
+            <div class="cart-total">
+                <span>Total</span>
+                <span class="cart-total-price" id="cart-total-price">0 DH</span>
+            </div>
+
+            <div id="cart-main-actions">
+                <button class="btn btn-primary btn-block" id="checkout-btn">Passer la Commande</button>
+                <p class="cart-info">Livraison offerte au Maroc • Paiement sécurisé</p>
+            </div>
+        </div>
+    </aside>
+
+    <!-- ==================== MAIN CONTENT ==================== -->
+    <main style="padding-top: 100px;">
+
+        <!-- ==================== AROMES SECTION ==================== -->
+        <section class="aromes" id="aromes">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <h2 class="section-title">Palette d'Arômes</h2>
+                    <p class="section-description">Explorez notre bibliothèque d'essences rares et composez votre
+                        symphonie olfactive personnelle.</p>
+                </div>
+
+                <!-- Category Filter -->
+                <div class="filter-buttons" data-aos="fade-up">
+                    <button class="filter-btn active" data-filter="all">Tous</button>
+                    <button class="filter-btn" data-filter="floral">Floral</button>
+                    <button class="filter-btn" data-filter="boisé">Boisé</button>
+                    <button class="filter-btn" data-filter="fruité">Fruité</button>
+                    <button class="filter-btn" data-filter="épicé">Épicé</button>
+                    <button class="filter-btn" data-filter="frais">Frais</button>
+                    <button class="filter-btn" data-filter="oriental">Oriental</button>
+                </div>
+
+                <!-- Aromas Grid -->
+                <div class="aromas-grid" id="aroma-selection-grid">
+                    <!-- FLORAL -->
+                    <div class="aroma-card" data-id="rose" data-category="floral" data-aos="zoom-in"
+                        data-aos-delay="50">
+                        <div class="aroma-image">
+                            <img src="https://i.postimg.cc/sfS5F7ct/3.webp" alt="Rose Damascena" loading="lazy">
+                            <span class="aroma-badge" style="background-color: #FFB6D9;">floral</span>
+                        </div>
+                        <div class="aroma-info">
+                            <h4 class="aroma-name">Rose Damascena</h4>
+                            <p class="aroma-description">Rose pure et délicate</p>
+                        </div>
+                    </div>
+
+                    <div class="aroma-card" data-id="jasmin" data-category="floral" data-aos="zoom-in"
+                        data-aos-delay="100">
+                        <div class="aroma-image">
+                            <img src="https://images.unsplash.com/photo-1651967058211-46bead66e3c9?w=400"
+                                alt="Jasmin Blanc" loading="lazy">
+                            <span class="aroma-badge" style="background-color: #FFB6D9;">floral</span>
+                        </div>
+                        <div class="aroma-info">
+                            <h4 class="aroma-name">Jasmin Blanc</h4>
+                            <p class="aroma-description">Fleur blanche envoûtante</p>
+                        </div>
+                    </div>
+
+                    <div class="aroma-card" data-id="ylang" data-category="floral" data-aos="zoom-in"
+                        data-aos-delay="150">
+                        <div class="aroma-image">
+                            <img src="https://images.unsplash.com/photo-1747071896570-036653de722b?w=400"
+                                alt="Ylang-Ylang" loading="lazy">
+                            <span class="aroma-badge" style="background-color: #FFB6D9;">floral</span>
+                        </div>
+                        <div class="aroma-info">
+                            <h4 class="aroma-name">Ylang-Ylang</h4>
+                            <p class="aroma-description">Exotique et sensuel</p>
+                        </div>
+                    </div>
+
+                    <div class="aroma-card" data-id="fleur-oranger" data-category="floral" data-aos="zoom-in"
+                        data-aos-delay="200">
+                        <div class="aroma-image">
+                            <img src="https://images.unsplash.com/photo-1768540926619-f3301850b114?w=400"
+                                alt="Fleur d'Oranger" loading="lazy">
+                            <span class="aroma-badge" style="background-color: #FFB6D9;">floral</span>
+                        </div>
+                        <div class="aroma-info">
+                            <h4 class="aroma-name">Fleur d'Oranger</h4>
+                            <p class="aroma-description">Fraîche et lumineuse</p>
+                        </div>
+                    </div>
+
+                    <!-- BOISÉ -->
+                    <div class="aroma-card" data-id="oud" data-category="boisé" data-aos="zoom-in" data-aos-delay="250">
+                        <div class="aroma-image">
+                            <img src="https://images.unsplash.com/photo-1642698215110-87817f1fbe0e?w=400"
+                                alt="Oud Royal" loading="lazy">
+                            <span class="aroma-badge" style="background-color: #8B6F47;">boisé</span>
+                        </div>
+                        <div class="aroma-info">
+                            <h4 class="aroma-name">Oud Royal</h4>
+                            <p class="aroma-description">Bois précieux oriental</p>
+                        </div>
+                    </div>
+
+                    <div class="aroma-card" data-id="cedre" data-category="boisé" data-aos="zoom-in"
+                        data-aos-delay="300">
+                        <div class="aroma-image">
+                            <img src="https://images.unsplash.com/photo-1570010935162-fb730177a075?w=400"
+                                alt="Cèdre Atlas" loading="lazy">
+                            <span class="aroma-badge" style="background-color: #8B6F47;">boisé</span>
+                        </div>
+                        <div class="aroma-info">
+                            <h4 class="aroma-name">Cèdre Atlas</h4>
+                            <p class="aroma-description">Boisé noble et raffiné</p>
+                        </div>
+                    </div>
+
+                    <div class="aroma-card" data-id="santal" data-category="boisé" data-aos="zoom-in"
+                        data-aos-delay="350">
+                        <div class="aroma-image">
+                            <img src="https://i.postimg.cc/jdqNyHJV/image.png" alt="Bois de Santal" loading="lazy">
+                            <span class="aroma-badge" style="background-color: #8B6F47;">boisé</span>
+                        </div>
+                        <div class="aroma-info">
+                            <h4 class="aroma-name">Bois de Santal</h4>
+                            <p class="aroma-description">Crémeux et enveloppant</p>
+                        </div>
+                    </div>
+
+                    <div class="aroma-card" data-id="vetiver" data-category="boisé" data-aos="zoom-in"
+                        data-aos-delay="400">
+                        <div class="aroma-image">
+                            <img src="https://i.postimg.cc/2Shz6Jjt/image.png" alt="Vétiver" loading="lazy">
+                            <span class="aroma-badge" style="background-color: #8B6F47;">boisé</span>
+                        </div>
+                        <div class="aroma-info">
+                            <h4 class="aroma-name">Vétiver</h4>
+                            <p class="aroma-description">Terreux et élégant</p>
+                        </div>
+                    </div>
+
+                    <!-- FRAIS -->
+                    <div class="aroma-card" data-id="bergamote" data-category="frais" data-aos="zoom-in"
+                        data-aos-delay="450">
+                        <div class="aroma-image">
+                            <img src="https://i.postimg.cc/dt1rSph3/BLOGmiseenavantlapromenade3.webp" alt="Bergamote"
+                                loading="lazy">
+                            <span class="aroma-badge" style="background-color: #3498DB;">frais</span>
+                        </div>
+                        <div class="aroma-info">
+                            <h4 class="aroma-name">Bergamote</h4>
+                            <p class="aroma-description">Agrume rafraîchissant</p>
+                        </div>
+                    </div>
+
+                    <div class="aroma-card" data-id="menthe" data-category="frais" data-aos="zoom-in"
+                        data-aos-delay="500">
+                        <div class="aroma-image">
+                            <img src="https://images.unsplash.com/photo-1628556270448-4d4e4148e1b1?w=400"
+                                alt="Menthe Glaciale" loading="lazy">
+                            <span class="aroma-badge" style="background-color: #3498DB;">frais</span>
+                        </div>
+                        <div class="aroma-info">
+                            <h4 class="aroma-name">Menthe Glaciale</h4>
+                            <p class="aroma-description">Fraîcheur intense</p>
+                        </div>
+                    </div>
+
+                    <!-- ORIENTAL -->
+                    <div class="aroma-card" data-id="vanille" data-category="oriental" data-aos="zoom-in"
+                        data-aos-delay="550">
+                        <div class="aroma-image">
+                            <img src="https://i.postimg.cc/P5Hhqs1r/image.png" alt="Vanille Bourbon" loading="lazy">
+                            <span class="aroma-badge" style="background-color: #9B59B6;">oriental</span>
+                        </div>
+                        <div class="aroma-info">
+                            <h4 class="aroma-name">Vanille Bourbon</h4>
+                            <p class="aroma-description">Gourmande et suave</p>
+                        </div>
+                    </div>
+
+                    <div class="aroma-card" data-id="ambre" data-category="oriental" data-aos="zoom-in"
+                        data-aos-delay="600">
+                        <div class="aroma-image">
+                            <img src="https://i.postimg.cc/3NTTmmjh/image.png" alt="Ambre Gris" loading="lazy">
+                            <span class="aroma-badge" style="background-color: #9B59B6;">oriental</span>
+                        </div>
+                        <div class="aroma-info">
+                            <h4 class="aroma-name">Ambre Gris</h4>
+                            <p class="aroma-description">Oriental et chaleureux</p>
+                        </div>
+                    </div>
+
+                    <div class="aroma-card" data-id="musc" data-category="oriental" data-aos="zoom-in"
+                        data-aos-delay="650">
+                        <div class="aroma-image">
+                            <img src="https://i.postimg.cc/3xTkYfkD/image.png" alt="Musc Blanc" loading="lazy">
+                            <span class="aroma-badge" style="background-color: #9B59B6;">oriental</span>
+                        </div>
+                        <div class="aroma-info">
+                            <h4 class="aroma-name">Musc Blanc</h4>
+                            <p class="aroma-description">Sensuel et enveloppant</p>
+                        </div>
+                    </div>
+
+                    <div class="aroma-card" data-id="patchouli" data-category="oriental" data-aos="zoom-in"
+                        data-aos-delay="700">
+                        <div class="aroma-image">
+                            <img src="https://i.postimg.cc/kMY8FVNr/image.png" alt="Patchouli" loading="lazy">
+                            <span class="aroma-badge" style="background-color: #9B59B6;">oriental</span>
+                        </div>
+                        <div class="aroma-info">
+                            <h4 class="aroma-name">Patchouli</h4>
+                            <p class="aroma-description">Terreux et mystérieux</p>
+                        </div>
+                    </div>
+
+                    <!-- FRUITÉ -->
+                    <div class="aroma-card" data-id="peche" data-category="fruité" data-aos="zoom-in"
+                        data-aos-delay="750">
+                        <div class="aroma-image">
+                            <img src="https://i.postimg.cc/8zy1XXfw/2.jpg" alt="Pêche Velours" loading="lazy">
+                            <span class="aroma-badge" style="background-color: #FF6B9D;">fruité</span>
+                        </div>
+                        <div class="aroma-info">
+                            <h4 class="aroma-name">Pêche Velours</h4>
+                            <p class="aroma-description">Fruitée et onctueuse</p>
+                        </div>
+                    </div>
+
+                    <div class="aroma-card" data-id="pamplemousse" data-category="fruité" data-aos="zoom-in"
+                        data-aos-delay="800">
+                        <div class="aroma-image">
+                            <img src="https://i.postimg.cc/C5T3WMD9/image.png" alt="Pamplemousse Rose" loading="lazy">
+                            <span class="aroma-badge" style="background-color: #FF6B9D;">fruité</span>
+                        </div>
+                        <div class="aroma-info">
+                            <h4 class="aroma-name">Pamplemousse Rose</h4>
+                            <p class="aroma-description">Pétillant et vivifiant</p>
+                        </div>
+                    </div>
+
+                    <!-- ÉPICÉ -->
+                    <div class="aroma-card" data-id="cardamome" data-category="épicé" data-aos="zoom-in"
+                        data-aos-delay="850">
+                        <div class="aroma-image">
+                            <img src="https://i.postimg.cc/P5bXbrdX/1.jpg" alt="Cardamome" loading="lazy">
+                            <span class="aroma-badge" style="background-color: #E74C3C;">épicé</span>
+                        </div>
+                        <div class="aroma-info">
+                            <h4 class="aroma-name">Cardamome</h4>
+                            <p class="aroma-description">Épice chaude et aromatique</p>
+                        </div>
+                    </div>
+
+                    <div class="aroma-card" data-id="poivre" data-category="épicé" data-aos="zoom-in"
+                        data-aos-delay="900">
+                        <div class="aroma-image">
+                            <img src="https://i.postimg.cc/nhvhWVz3/image.png" alt="Poivre Noir" loading="lazy">
+                            <span class="aroma-badge" style="background-color: #E74C3C;">épicé</span>
+                        </div>
+                        <div class="aroma-info">
+                            <h4 class="aroma-name">Poivre Noir</h4>
+                            <p class="aroma-description">Piquant et vibrant</p>
+                        </div>
+                    </div>
+
+                    <div class="aroma-card" data-id="cannelle" data-category="épicé" data-aos="zoom-in"
+                        data-aos-delay="950">
+                        <div class="aroma-image">
+                            <img src="https://i.postimg.cc/250rp1fv/image.png" alt="Cannelle" loading="lazy">
+                            <span class="aroma-badge" style="background-color: #E74C3C;">épicé</span>
+                        </div>
+                        <div class="aroma-info">
+                            <h4 class="aroma-name">Cannelle</h4>
+                            <p class="aroma-description">Douce épice réconfortante</p>
+                        </div>
+                    </div>
+
+                    <!-- CTA INTEGRATED IN GRID -->
+                    <div class="cta-card" data-aos="zoom-in" data-aos-delay="1000">
+                        <div class="cta-card-content">
+                            <span class="about-tag"
+                                style="color: var(--color-gold-light); font-size: 0.8rem; letter-spacing: 2px;">Distinguez-vous</span>
+                            <h3 class="cta-card-title">Votre Signature Olfactive</h3>
+                            <div id="arome-selection-summary" class="selection-summary">
+                                <!-- Names of selected aromas will appear here -->
+                            </div>
+                            <div style="margin-top: 2rem;">
+                                <button id="builder-create-btn" class="btn btn-primary btn-sm">Créer mon parfum</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+
+    <style>
+        .cta-card {
+            grid-column: span 2;
+            background: var(--color-black);
+            color: var(--color-white);
+            border-radius: 1rem;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+            min-height: 250px;
+        }
+
+        .cta-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('https://www.transparenttextures.com/patterns/cubes.png');
+            opacity: 0.1;
+        }
+
+        .cta-card-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            width: 100%;
+        }
+
+        .cta-card-title {
+            font-family: var(--font-primary);
+            font-size: 1.8rem;
+            margin: 1rem 0;
+        }
+
+        .selection-summary {
+            min-height: 1.5rem;
+            color: var(--color-gold-light);
+            font-family: var(--font-primary);
+            font-size: 1.1rem;
+            font-style: italic;
+            margin-top: 0.5rem;
+        }
+
+        @media (max-width: 600px) {
+            .cta-card {
+                grid-column: span 1;
+            }
+        }
+
+        .cta-box {
+            background: var(--color-black);
+            color: var(--color-white);
+            padding: 8rem 2rem;
+            border-radius: 1rem;
+            text-align: center;
+            margin: 4rem 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .cta-box::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('https://www.transparenttextures.com/patterns/cubes.png');
+            opacity: 0.1;
+        }
+
+        .cta-box .cta-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+            color: var(--color-white);
+        }
+
+        .cta-box .about-tag {
+            font-family: var(--font-primary);
+            color: var(--color-gold);
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            display: block;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-box .btn-primary {
+            padding: 1.25rem 3.5rem;
+            font-size: 1.1rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Brand -->
+                <div class="footer-col">
+                    <a href="index.html" class="logo footer-logo">
+                        MAISON <span class="logo-accent">AROME</span>
+                    </a>
+                    <p class="footer-about">L'excellence de la parfumerie marocaine. Des créations uniques pour des
+                        instants inoubliables.</p>
+                </div>
+
+                <!-- Navigation -->
+                <div class="footer-col">
+                    <h4 class="footer-heading">Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="aromes.html">Arômes</a></li>
+                        <li><a href="creer.html">Créer Mon Parfum</a></li>
+                        <li><a href="apropos.html">À Propos</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Collection -->
+                <div class="footer-col">
+                    <h4 class="footer-heading">Collection</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html#collections">Femme</a></li>
+                        <li><a href="index.html#collections">Homme</a></li>
+                        <li><a href="index.html#edition-limitee">Édition Limitée</a></li>
+                        <li><a href="creer.html">Sur Mesure</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div class="footer-col">
+                    <h4 class="footer-heading">Newsletter</h4>
+                    <p class="footer-about">Inscrivez-vous pour recevoir nos offres exclusives.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Votre email" required>
+                        <button type="submit" class="btn btn-primary">OK</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 MAISON AROME. Tous droits réservés.</p>
+                <div class="footer-social">
+                    <a href="https://www.instagram.com/maisonarom?igsh=dXV0ZjNqOGZmM295&utm_source=qr" target="_blank"
+                        aria-label="Instagram">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                        </svg>
+                    </a>
+                    <a href="https://www.tiktok.com/@maison_arome" target="_blank" aria-label="TikTok">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>

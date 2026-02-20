@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="MAISON AROME - Découvrez notre histoire, notre savoir-faire et notre engagement envers l'excellence de la parfumerie marocaine.">
+    <meta name="keywords" content="maison arome, à propos, parfumerie marocaine, savoir-faire, luxe, parfum sur mesure">
+    <meta name="author" content="MAISON AROME">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="À Propos - MAISON AROME">
+    <meta property="og:description" content="L'excellence et l'élégance de la parfumerie marocaine contemporaine.">
+    <meta property="og:type" content="website">
+
+    <title>À Propos - MAISON AROME | Excellence & Savoir-Faire</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="https://i.postimg.cc/KzG3Qyy3/logo-M-A.png">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+
+    <style>
+        /* LUXURY REDESIGN STYLES */
+        body {
+            background: #fdfaf5;
+        }
+
+        .about-main {
+            padding-bottom: 8rem;
+            padding-top: 140px;
+            /* Adjusted for better spacing without hero */
+        }
+
+        /* Section headers with lines */
+        .line-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            width: 100%;
+        }
+
+        .line-header::before,
+        .line-header::after {
+            content: '';
+            height: 1px;
+            background: var(--color-gold);
+            flex: 1;
+            opacity: 0.4;
+        }
+
+        .line-header h2 {
+            font-family: var(--font-primary);
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            color: var(--color-black);
+            white-space: nowrap;
+            font-weight: 500;
+        }
+
+        .left-line-header {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .left-line-header h2 {
+            font-family: var(--font-primary);
+            font-size: 2rem;
+            white-space: nowrap;
+        }
+
+        .left-line-header::after {
+            content: '';
+            height: 1px;
+            background: var(--color-gold);
+            flex: 1;
+            opacity: 0.4;
+        }
+
+        /* Content spacing */
+        .about-content-section {
+            padding: 4rem 0;
+        }
+
+        .centered-text {
+            max-width: 900px;
+            margin: 0 auto 4rem auto;
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--color-gray);
+            font-family: 'Montserrat', sans-serif;
+            font-style: italic;
+        }
+
+        .ref-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .ref-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .ref-grid .img-wrapper {
+                order: -1;
+            }
+        }
+
+        .img-wrapper {
+            box-shadow: var(--shadow-lg);
+            border-radius: 4px;
+            overflow: hidden;
+            background: var(--color-beige);
+        }
+
+        .img-wrapper img {
+            width: 100%;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+
+        .img-wrapper:hover img {
+            transform: scale(1.03);
+        }
+
+        .text-box {
+            padding: 1rem;
+        }
+
+        .text-box p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--color-gray);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Final photo and CTA */
+        .final-display {
+            text-align: center;
+            margin-top: 2rem;
+            margin-bottom: 6rem;
+        }
+
+        .final-photo {
+            max-width: 800px;
+            margin: 0 auto 4rem auto;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .final-photo img {
+            width: 100%;
+            display: block;
+        }
+
+        .final-cta-btn {
+            background: #b49770;
+            /* Muted gold from reference */
+            color: white;
+            padding: 1.5rem 4rem;
+            border-radius: 50px;
+            font-size: 1.25rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: var(--font-secondary);
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 10px 20px rgba(180, 151, 112, 0.3);
+        }
+
+        .final-cta-btn:hover {
+            background: #a3865f;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(180, 151, 112, 0.4);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ==================== HEADER ==================== -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Logo -->
+                <a href="index.html" class="logo">
+                    <img src="photo/logo.jpeg" alt="Maison Arôme Logo" class="logo-img">
+                    MAISON <span class="logo-accent">AROME</span>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="nav" id="nav-menu">
+                    <ul class="nav-list">
+                        <li><a href="index.html" class="nav-link">Accueil</a></li>
+                        <li><a href="aromes.html" class="nav-link">Arômes</a></li>
+                        <li><a href="creer.html" class="nav-link">Créer Mon Parfum</a></li>
+                        <li><a href="apropos.html" class="nav-link active">À Propos</a></li>
+                        <li><a href="contact.html" class="nav-link">Contact</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Header Actions -->
+                <div class="header-actions">
+                    <button class="cart-btn" id="cart-btn" aria-label="Panier">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+                            <line x1="3" y1="6" x2="21" y2="6" />
+                            <path d="M16 10a4 4 0 0 1-8 0" />
+                        </svg>
+                        <span class="cart-badge" id="cart-badge">0</span>
+                    </button>
+
+                    <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== MAIN CONTENT ==================== -->
+    <main class="about-main">
+
+        <div class="container">
+
+            <!-- Qui sommes-nous ? -->
+            <section class="about-content-section" data-aos="fade-up">
+                <div class="ref-grid" style="direction: rtl;">
+                    <div class="text-box" style="direction: ltr;">
+                        <div class="left-line-header" style="flex-direction: row-reverse;">
+                            <h2 style="margin-left: 2rem; margin-right: 0;">Qui sommes-nous ?</h2>
+                        </div>
+                        <p>
+                            Maison Arôme est une maison de parfumerie marocaine contemporaine dédiée à l'élégance et à
+                            l'expression personnelle.
+                        </p>
+                        <p>
+                            Nous créons des parfums prêts à porter, soigneusement élaborés, ainsi que des parfums
+                            personnalisés
+                            conçus selon les préférences et les arômes choisis par nos clients. Chaque fragrance est
+                            pensée
+                            comme une signature unique.
+                        </p>
+                    </div>
+                    <div class="img-wrapper" style="direction: ltr;">
+                        <img src="https://i.postimg.cc/ht1GKTzS/image.png" alt="Maison Arôme - Qui sommes-nous">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Notre savoir-faire -->
+            <section class="about-content-section" data-aos="fade-up">
+                <div class="ref-grid">
+                    <div class="text-box">
+                        <div class="left-line-header">
+                            <h2>Notre savoir-faire</h2>
+                        </div>
+                        <p>
+                            Notre expertise repose sur la sélection minutieuse des matières premières et l'harmonie
+                            parfaite entre les notes.
+                        </p>
+                        <p>
+                            Chaque création est travaillée avec précision pour offrir profondeur, équilibre et tenue
+                            longue durée.
+                        </p>
+                    </div>
+                    <div class="img-wrapper">
+                        <img src="https://i.postimg.cc/KY2WFgXg/image.png" alt="Atelier de création">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Notre promesse -->
+            <section class="about-content-section" data-aos="fade-up">
+                <div class="ref-grid" style="direction: rtl;">
+                    <div class="text-box" style="direction: ltr;">
+                        <div class="left-line-header" style="flex-direction: row-reverse;">
+                            <h2 style="margin-left: 2rem; margin-right: 0;">Notre promesse</h2>
+                        </div>
+                        <p>
+                            Maison Arôme s'engage à offrir bien plus qu'un parfum : une expérience sensorielle raffinée.
+                        </p>
+                        <p>
+                            Nous promettons qualité, personnalisation et distinction, afin que chaque client trouve ou
+                            crée une fragrance qui lui ressemble pleinement.
+                        </p>
+                    </div>
+                    <div class="img-wrapper" style="direction: ltr;">
+                        <img src="https://i.postimg.cc/XJyxCj6t/image.png" alt="Maison Arôme - Notre Promesse">
+                    </div>
+                </div>
+            </section>
+
+
+        </div>
+
+    </main>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Brand -->
+                <div class="footer-col">
+                    <h3 class="footer-title">MAISON <span class="text-gold">AROME</span></h3>
+                    <p class="footer-text">Votre signature olfactive commence ici. Découvrez l'excellence de la
+                        parfumerie marocaine.</p>
+                </div>
+
+                <!-- Navigation -->
+                <div class="footer-col">
+                    <h4 class="footer-heading">Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="aromes.html">Arômes</a></li>
+                        <li><a href="creer.html">Créer Mon Parfum</a></li>
+                        <li><a href="apropos.html">À Propos</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div class="footer-col">
+                    <h4 class="footer-heading">Contact</h4>
+                    <ul class="footer-contact">
+                        <li>Rabat, Hay Ryad</li>
+                        <li><a href="tel:0708235021">0708 23 50 21</a></li>
+                        <li><a href="mailto:maisonarome1@gmail.com">maisonarome1@gmail.com</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="footer-bottom">
+                <p>&copy; 2026 MAISON AROME. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== SCRIPTS ==================== -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+    <script src="script.js" defer></script>
+</body>
+
+</html>
