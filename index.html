@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="MAISON AROME - Parfums de luxe marocain. Découvrez notre collection exclusive de fragrances sur mesure. Édition limitée, ingrédients rares, fabrication artisanale.">
+    <meta name="keywords"
+        content="parfum luxe, parfum marocain , parfum sur mesure, MAISON AROME, édition limitée, Noor Oud, création parfum, Maroc">
+    <meta name="author" content="MAISON AROME">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="MAISON AROME - Parfums de Luxe Marocain">
+    <meta property="og:description" content="Le parfum qui vous ressemble. Découvrez l'élégance rare de MAISON AROME.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://maison-arome.ma">
+    <meta property="og:image" content="https://i.postimg.cc/ZnJt5Tzh/prf-ma.jpg">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="MAISON AROME - Parfums de Luxe">
+    <meta name="twitter:description" content="Le parfum qui vous ressemble.">
+    <meta name="twitter:image" content="https://i.postimg.cc/ZnJt5Tzh/prf-ma.jpg">
+
+    <title>MAISON AROME - Parfums de Luxe Marocain | Édition Limitée</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="https://i.postimg.cc/KzG3Qyy3/logo-M-A.png">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+</head>
+
+<body>
+
+    <!-- ==================== HEADER ==================== -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Logo -->
+                <a href="index.html" class="logo">
+                    <img src="photo/logo.jpeg" alt="Maison Arôme Logo" class="logo-img">
+                    MAISON <span class="logo-accent">AROME</span>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="nav" id="nav-menu">
+                    <ul class="nav-list">
+                        <li><a href="index.html" class="nav-link active">Accueil</a></li>
+                        <li><a href="aromes.html" class="nav-link">Arômes</a></li>
+                        <li><a href="creer.html" class="nav-link">Créer Mon Parfum</a></li>
+                        <li><a href="contact.html" class="nav-link">Contact</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Header Actions -->
+                <div class="header-actions">
+                    <button class="cart-btn" id="cart-btn" aria-label="Panier">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+                            <line x1="3" y1="6" x2="21" y2="6" />
+                            <path d="M16 10a4 4 0 0 1-8 0" />
+                        </svg>
+                        <span class="cart-badge" id="cart-badge">0</span>
+                    </button>
+
+                    <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== MOBILE CART BUTTON ==================== -->
+    <button class="mobile-cart-btn" id="mobile-cart-btn" style="display: none;">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <path d="M16 10a4 4 0 0 1-8 0" />
+        </svg>
+        <span class="cart-badge" id="mobile-cart-badge">0</span>
+    </button>
+
+    <!-- ==================== CART SIDEBAR ==================== -->
+    <div class="cart-overlay" id="cart-overlay"></div>
+    <aside class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h2>Votre Panier</h2>
+            <button class="cart-close" id="cart-close" aria-label="Fermer">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+            </button>
+        </div>
+
+        <div class="cart-items" id="cart-items">
+            <div class="cart-empty">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+                    <line x1="3" y1="6" x2="21" y2="6" />
+                    <path d="M16 10a4 4 0 0 1-8 0" />
+                </svg>
+                <p>Votre panier est vide</p>
+            </div>
+        </div>
+
+        <div id="checkout-form-container" style="display: none; padding: 1.5rem;">
+            <h3 class="checkout-title">Détails de Livraison</h3>
+            <form id="checkout-form">
+                <div class="form-group">
+                    <label for="checkout-name">Nom Complet</label>
+                    <input type="text" id="checkout-name" required placeholder="Votre nom">
+                </div>
+                <div class="form-group">
+                    <label for="checkout-phone">Téléphone</label>
+                    <input type="tel" id="checkout-phone" required placeholder="Ex: 0612345678">
+                </div>
+                <div class="form-group">
+                    <label for="checkout-address">Addresse de livraison</label>
+                    <textarea id="checkout-address" required placeholder="Votre adresse complète"></textarea>
+                </div>
+                <div class="checkout-actions">
+                    <button type="button" class="btn btn-secondary" id="back-to-cart">Retour</button>
+                    <button type="submit" class="btn btn-primary" id="confirm-order-btn">Confirmer la
+                        Commande</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="cart-footer" id="cart-footer" style="display: none;">
+            <div class="cart-total">
+                <span>Total</span>
+                <span class="cart-total-price" id="cart-total-price">0 DH</span>
+            </div>
+
+            <div id="cart-main-actions">
+                <button class="btn btn-primary btn-block" id="checkout-btn">Passer la Commande</button>
+                <p class="cart-info">Livraison offerte au Maroc • Paiement sécurisé</p>
+            </div>
+        </div>
+    </aside>
+
+    <!-- ==================== MAIN CONTENT ==================== -->
+    <main>
+
+        <!-- ==================== HERO SECTION ==================== -->
+        <section class="hero" id="home">
+            <div class="hero-bg">
+                <img src="photo/page.jpeg" alt="MAISON AROME Luxury" class="hero-img">
+                <div class="hero-overlay"></div>
+            </div>
+
+            <div class="container">
+                <div class="hero-content">
+                    <p class="hero-subtitle" data-aos="fade-up">Collection Privée</p>
+                    <h1 class="hero-title" data-aos="fade-up" data-aos-delay="100">
+                        Le parfum<br>qui vous ressemble
+                    </h1>
+                    <p class="hero-description" data-aos="fade-up" data-aos-delay="200">
+                        Découvrez l'élégance rare de MAISON AROME
+                    </p>
+
+                    <div class="hero-cta" data-aos="fade-up" data-aos-delay="300">
+                        <a href="#collections" class="btn btn-primary">Découvrir la Collection</a>
+                        <a href="creer.html" class="btn btn-secondary">Créer Mon Parfum</a>
+                    </div>
+
+                    <div class="hero-badges" data-aos="fade-up" data-aos-delay="400">
+                        <div class="badge-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <rect x="1" y="3" width="15" height="13" />
+                                <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
+                                <circle cx="5.5" cy="18.5" r="2.5" />
+                                <circle cx="18.5" cy="18.5" r="2.5" />
+                            </svg>
+                            <span>Livraison Offerte au Maroc</span>
+                        </div>
+                        <div class="badge-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                            <span>Paiement Sécurisé</span>
+                        </div>
+                        <div class="badge-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path
+                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                            <span>Édition Limitée</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="scroll-indicator">
+                <div class="scroll-mouse"></div>
+            </div>
+        </section>
+
+        <!-- ==================== LIMITED EDITION SECTION ==================== -->
+        <section class="limited-edition" id="edition-limitee">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <span class="section-badge">Quantité Limitée</span>
+                    <h2 class="section-title">Édition Limitée – Spécial Aïd</h2>
+
+                    <!-- Countdown Timer -->
+                    <div class="countdown" id="countdown">
+                        <div class="countdown-item">
+                            <div class="countdown-value" id="days">27</div>
+                            <div class="countdown-label">Jours</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="countdown-value" id="hours">12</div>
+                            <div class="countdown-label">Heures</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="countdown-value" id="minutes">45</div>
+                            <div class="countdown-label">Min</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="countdown-value" id="seconds">30</div>
+                            <div class="countdown-label">Sec</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="products-grid products-grid-2">
+                    <!-- Product 1: Noor Oud -->
+                    <article class="product-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="product-image">
+                            <img src="https://i.postimg.cc/j560xGW9/image.png" alt="Noor Oud Femme" loading="lazy">
+                            <span class="product-badge">ÉDITION LIMITÉE</span>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">Noor Oud (Femme)</h3>
+                            <p class="product-description">Notes de rose damascena, oud royal et musc blanc. Une
+                                symphonie orientale captivante.</p>
+                            <div class="product-footer">
+                                <span class="product-price">240 DH</span>
+                                <span class="product-stock">Seulement 12 disponibles</span>
+                            </div>
+                            <div class="product-quantity">
+                                <label>Quantité:</label>
+                                <div class="quantity-selector">
+                                    <button class="qty-btn qty-minus" data-action="minus">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <line x1="5" y1="12" x2="19" y2="12" />
+                                        </svg>
+                                    </button>
+                                    <input type="number" class="qty-input" value="1" min="1" max="12" readonly>
+                                    <button class="qty-btn qty-plus" data-action="plus">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <line x1="12" y1="5" x2="12" y2="19" />
+                                            <line x1="5" y1="12" x2="19" y2="12" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary btn-block add-to-cart" data-id="le-1"
+                                data-name="Noor Oud (Femme)" data-price="240"
+                                data-image="https://i.postimg.cc/j560xGW9/image.png">
+                                Ajouter au Panier
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- Product 2: Oud Impérial -->
+                    <article class="product-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="product-image">
+                            <img src="https://i.postimg.cc/zvYM4p0B/im-1.jpg" alt="Oud Impérial Homme" loading="lazy">
+                            <span class="product-badge">ÉDITION LIMITÉE</span>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">Oud Impérial (Homme)</h3>
+                            <p class="product-description">Oud intense, ambre gris et notes boisées. L'essence de la
+                                masculinité raffinée.</p>
+                            <div class="product-footer">
+                                <span class="product-price">280 DH</span>
+                                <span class="product-stock">Seulement 12 disponibles</span>
+                            </div>
+                            <div class="product-quantity">
+                                <label>Quantité:</label>
+                                <div class="quantity-selector">
+                                    <button class="qty-btn qty-minus" data-action="minus">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <line x1="5" y1="12" x2="19" y2="12" />
+                                        </svg>
+                                    </button>
+                                    <input type="number" class="qty-input" value="1" min="1" max="12" readonly>
+                                    <button class="qty-btn qty-plus" data-action="plus">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <line x1="12" y1="5" x2="12" y2="19" />
+                                            <line x1="5" y1="12" x2="19" y2="12" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary btn-block add-to-cart" data-id="le-2"
+                                data-name="Oud Impérial (Homme)" data-price="280"
+                                data-image="https://i.postimg.cc/zvYM4p0B/im-1.jpg">
+                                Ajouter au Panier
+                            </button>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== WHY CHOOSE US SECTION ==================== -->
+        <section class="why-choose" id="pourquoi">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">Pourquoi Choisir MAISON AROME</h2>
+
+                <div class="features-grid">
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="feature-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path
+                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                        </div>
+                        <h3 class="feature-title">Ingrédients Rares</h3>
+                        <p class="feature-description">Essences naturelles d'exception</p>
+                    </div>
+
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="feature-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+                                <line x1="3" y1="6" x2="21" y2="6" />
+                                <path d="M16 10a4 4 0 0 1-8 0" />
+                            </svg>
+                        </div>
+                        <h3 class="feature-title">Fabrication Artisanale</h3>
+                        <p class="feature-description">Savoir-faire marocain traditionnel</p>
+                    </div>
+
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="feature-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <circle cx="12" cy="12" r="10" />
+                                <polyline points="12 6 12 12 16 14" />
+                            </svg>
+                        </div>
+                        <h3 class="feature-title">Longue Tenue</h3>
+                        <p class="feature-description">8-12 heures de diffusion</p>
+                    </div>
+
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+                        <div class="feature-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <rect x="1" y="3" width="15" height="13" />
+                                <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
+                                <circle cx="5.5" cy="18.5" r="2.5" />
+                                <circle cx="18.5" cy="18.5" r="2.5" />
+                            </svg>
+                        </div>
+                        <h3 class="feature-title">Livraison Rapide</h3>
+                        <p class="feature-description">2-4 jours au Maroc</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== COLLECTIONS SECTION ==================== -->
+        <section class="collections" id="collections">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">Notre Collection</h2>
+
+                <!-- Collection Femme -->
+                <div class="collection-category">
+                    <h3 class="category-title" data-aos="fade-up">Collection Femme</h3>
+                    <div class="products-grid products-grid-2">
+                        <article class="product-card" data-aos="fade-up" data-aos-delay="100">
+                            <div class="product-image">
+                                <img src="https://i.postimg.cc/v8CCV8yz/im-2.jpg" alt="Elixir" loading="lazy">
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name">Elixir</h3>
+                                <p class="product-description">Jasmin blanc, vanille bourbon et bergamote. Un parfum
+                                    intemporel et gracieux.</p>
+                                <div class="product-footer">
+                                    <span class="product-price">220 DH</span>
+                                </div>
+                                <button class="btn btn-primary btn-block add-to-cart" data-id="f-1" data-name="Elixir"
+                                    data-price="220" data-image="https://i.postimg.cc/v8CCV8yz/im-2.jpg">
+                                    Ajouter au Panier
+                                </button>
+                            </div>
+                        </article>
+
+                        <article class="product-card" data-aos="fade-up" data-aos-delay="200">
+                            <div class="product-image">
+                                <img src="https://i.postimg.cc/fL1Zyx5S/im-3.jpg" alt="Fleur Royale" loading="lazy">
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name">Fleur Royale</h3>
+                                <p class="product-description">Ylang-ylang, patchouli et fleur d'oranger. Une invitation
+                                    au voyage sensoriel.</p>
+                                <div class="product-footer">
+                                    <span class="product-price">250 DH</span>
+                                </div>
+                                <button class="btn btn-primary btn-block add-to-cart" data-id="f-2"
+                                    data-name="Fleur Royale" data-price="250"
+                                    data-image="https://i.postimg.cc/fL1Zyx5S/im-3.jpg">
+                                    Ajouter au Panier
+                                </button>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <!-- Collection Homme -->
+                <div class="collection-category">
+                    <h3 class="category-title" data-aos="fade-up">Collection Homme</h3>
+                    <div class="products-grid products-grid-2">
+                        <article class="product-card" data-aos="fade-up" data-aos-delay="100">
+                            <div class="product-image">
+                                <img src="https://i.postimg.cc/4yCksXNf/im-5.jpg" alt="Noir Intense" loading="lazy">
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name">Noir Intense</h3>
+                                <p class="product-description">Vétiver, cuir et cardamome. L'affirmation d'une élégance
+                                    moderne.</p>
+                                <div class="product-footer">
+                                    <span class="product-price">250 DH</span>
+                                </div>
+                                <button class="btn btn-primary btn-block add-to-cart" data-id="h-1"
+                                    data-name="Noir Intense" data-price="250"
+                                    data-image="https://i.postimg.cc/4yCksXNf/im-5.jpg">
+                                    Ajouter au Panier
+                                </button>
+                            </div>
+                        </article>
+
+                        <article class="product-card" data-aos="fade-up" data-aos-delay="200">
+                            <div class="product-image">
+                                <img src="https://i.postimg.cc/kgMrn19c/im-4.jpg" alt="Oud Intense" loading="lazy">
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name">Oud Intense</h3>
+                                <p class="product-description">Cèdre Atlas, poivre noir et bergamote. Une fragrance
+                                    magnétique et virile.</p>
+                                <div class="product-footer">
+                                    <span class="product-price">220 DH</span>
+                                </div>
+                                <button class="btn btn-primary btn-block add-to-cart" data-id="h-2"
+                                    data-name="Oud Intense" data-price="220"
+                                    data-image="https://i.postimg.cc/kgMrn19c/im-4.jpg">
+                                    Ajouter au Panier
+                                </button>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <!-- Quote -->
+                <div class="quote" data-aos="fade-up">
+                    <p>"Un parfum ne se porte pas. Il se vit."</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Brand -->
+                <div class="footer-col">
+                    <h3 class="footer-title">MAISON <span class="text-gold">AROME</span></h3>
+                    <p class="footer-text">Votre signature olfactive commence ici. Découvrez l'excellence de la
+                        parfumerie marocaine.</p>
+                </div>
+
+                <!-- Navigation -->
+                <div class="footer-col">
+                    <h4 class="footer-heading">Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="aromes.html">Arômes</a></li>
+                        <li><a href="creer.html">Créer Mon Parfum</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div class="footer-col">
+                    <h4 class="footer-heading">Contact</h4>
+                    <ul class="footer-contact">
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                                <circle cx="12" cy="10" r="3" />
+                            </svg>
+                            Rabat, Hay Ryad
+                        </li>
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path
+                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                            </svg>
+                            <a href="tel:0708235021">0708 23 50 21</a>
+                        </li>
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                <polyline points="22,6 12,13 2,6" />
+                            </svg>
+                            <a href="mailto:maisonarome1@gmail.com">maisonarome1@gmail.com</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Social -->
+                <div class="footer-col">
+                    <h4 class="footer-heading">Suivez-nous</h4>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/maisonarom?igsh=dXV0ZjNqOGZmM295&utm_source=qr"
+                            target="_blank" aria-label="Instagram">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                            </svg>
+                        </a>
+                        <a href="https://www.tiktok.com/@maison_arome" target="_blank" aria-label="TikTok">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="footer-bottom">
+                <p>&copy; 2026 MAISON AROME. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== TOAST NOTIFICATION ==================== -->
+    <div id="toast" class="toast">Produit ajouté au panier !</div>
+
+    <!-- ==================== SCRIPTS ==================== -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js" defer></script>
+</body>
+
+</html>
